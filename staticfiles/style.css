@@ -1,0 +1,101 @@
+.float-right{
+  float:right;
+}
+*{font-family: 'Roboto', sans-serif;}
+h1,h2,h3,h4,a.btn{font-family: 'Kavivanar', sans-serif;}
+body,html{
+  min-height: 100%;
+  background-image: url('/static/img/3.png');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+}
+body{
+   margin-bottom: 60px;
+}
+.main{
+  height: 300%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    rgba(0, 0, 0, .8),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, .2),
+    rgba(255, 255, 255, .4),
+    rgba(255, 255, 255, .6),
+    rgba(255, 255, 255, .8),
+    rgba(255, 255, 255, .9),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1)
+  );
+}
+.section{
+  height: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section p{
+  font-size: 20px;
+}
+#welcome{
+  color:white;
+}
+#about{
+  color:black;
+}
+.inline-block{
+  display: inline-block;
+}
+.top-btn,.down-btn {
+  width: 50px;
+  line-height: 50px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.top-btn{background: rgb(11, 37, 74);border:1px solid black;}
+.top-btn:hover{color:black;background: white;}
+.down-btn{background: rgba(0,0,0,0);border:1px solid white;color:white;}
+.down-btn:hover{color:black;background: white;}
+.top-btn:hover,.down-btn:hover{
+  text-decoration: none;
+}
+footer{
+  background: white;
+  color:black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+.bg-trans{background-color:rgba(0, 0, 0, 0) !important;}
+
+a.bg-trans:focus,a.bg-trans:hover,button.bg-trans:focus,button.bg-trans:hover{background-color:#1d2124!important}
+
+.navbar-trans .navbar-brand{color:#fff;background: rgba(0,0,0,0.4);}
+.navbar-trans .navbar-brand:focus,.navbar-trans .navbar-brand:hover{color:#fff}
+.navbar-trans .navbar-nav .nav-link{color:rgba(255,255,255,.5)}
+.navbar-trans .navbar-nav .nav-link:focus,.navbar-trans .navbar-nav .nav-link:hover{color:rgba(255,255,255,.75)}
+.navbar-trans .navbar-nav .nav-link.disabled{color:rgba(255,255,255,.25)}
+.navbar-trans .navbar-nav .active>.nav-link,.navbar-trans .navbar-nav .nav-link.active,.navbar-trans .navbar-nav .nav-link.show,.navbar-trans .navbar-nav .show>.nav-link{color:#fff}
+.navbar-trans .navbar-toggler{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.1)}
+.navbar-trans .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")}
+.navbar-trans .navbar-text{color:rgba(255,255,255,.5)}
+.navbar-trans .navbar-text a{color:#fff}
+.navbar-trans .navbar-text a:focus,.navbar-trans .navbar-text a:hover{color:#fff}

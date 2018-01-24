@@ -1,219 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 {% load static %}
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <title>welcome</title>
+    <link href="https://fonts.googleapis.com/css?family=Kavivanar|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/css/master.css"> -->
+    <style media="screen">
+        .float-right {
+            float: right;
+        }
 
-<title>{% block title %}{% endblock %}</title>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
 
-<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-<link rel="preload" href="https://cdn.futurelearn.com/assets/application-77057c8051539191ece75095dd0c83d4a999f83182243ebe30266bb1b8839f9d.css" as="style" />
-<link rel="preload" href="https://cdn.futurelearn.com/assets/fonts/europa-ee7781719b24468086877c63ff79a3c621ee568c0a8d998d87f7fba4e5678039.css?bPeCsFjNlmXeh9wkltQG0lQRFlrgSHuaYHFUwxl0d7X0Qar2S2t0NhUrnNJUQ-dkAC3je92T7hepcEvo" as="style" />
+        h1,
+        h2,
+        h3,
+        h4,
+        a.btn {
+            font-family: 'Kavivanar', sans-serif;
+        }
 
+        body,
+        html {
+            height: 100%;
+            background-image: url("{% static '3.png' %}");
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
-<meta content='width=device-width, initial-scale=1' name='viewport'>
+        .main {
+            height: 300%;
+            background-color: rgba(0, 0, 0, 0.5);
+            background: linear-gradient( rgba(0, 0, 0, .8),
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, .2),
+            rgba(255, 255, 255, .4),
+            rgba(255, 255, 255, .6),
+            rgba(255, 255, 255, .8),
+            rgba(255, 255, 255, .9),
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 1));
+        }
 
-<link rel="stylesheet" media="screen, projection" href="https://cdn.futurelearn.com/assets/application-77057c8051539191ece75095dd0c83d4a999f83182243ebe30266bb1b8839f9d.css" />
-<link rel="stylesheet" media="screen, projection" href="https://cdn.futurelearn.com/assets/fonts/europa-ee7781719b24468086877c63ff79a3c621ee568c0a8d998d87f7fba4e5678039.css?bPeCsFjNlmXeh9wkltQG0lQRFlrgSHuaYHFUwxl0d7X0Qar2S2t0NhUrnNJUQ-dkAC3je92T7hepcEvo" />
-<link rel="stylesheet" media="print" href="https://cdn.futurelearn.com/assets/print-311406ef463f696cd357d4175149b799b38a2aaa8312a487e25364251e73bfe8.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        .section {
+            height: 33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-<script src="https://cdn.futurelearn.com/assets/fl/application/init-f410810a6087f8a5bf048c4df0068eb78b9a679c79ec0144cc9018ba975b09e9.js"></script>
-<script src="https://cdn.futurelearn.com/assets/fl/application/font_face_init-940e15113d866ef64063fef8da96e390fa81260081bbb1699e8eb80f737b4e93.js"></script>
+        .section p {
+            font-size: 20px;
+        }
 
+        #welcome {
+            color: white;
+        }
 
+        #about {
+            color: black;
+        }
+
+        .inline-block {
+            display: inline-block;
+        }
+
+        .top-btn,
+        .down-btn {
+            width: 50px;
+            line-height: 50px;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        .top-btn {
+            background: rgb(11, 37, 74);
+            border: 1px solid black;
+        }
+
+        .top-btn:hover {
+            color: black;
+            background: white;
+        }
+
+        .down-btn {
+            background: rgba(0, 0, 0, 0);
+            border: 1px solid white;
+            color: white;
+        }
+
+        .down-btn:hover {
+            color: black;
+            background: white;
+        }
+
+        .top-btn:hover,
+        .down-btn:hover {
+            text-decoration: none;
+        }
+
+        footer {
+            background: white;
+            color: black;
+            padding: 5px;
+        }
+
+        .bg-trans {
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+
+        a.bg-trans:focus,
+        a.bg-trans:hover,
+        button.bg-trans:focus,
+        button.bg-trans:hover {
+            background-color: #1d2124!important
+        }
+
+        .navbar-trans .navbar-brand {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-trans .navbar-brand:focus,
+        .navbar-trans .navbar-brand:hover {
+            color: #fff
+        }
+
+        .navbar-trans .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, .5)
+        }
+
+        .navbar-trans .navbar-nav .nav-link:focus,
+        .navbar-trans .navbar-nav .nav-link:hover {
+            color: rgba(255, 255, 255, .75)
+        }
+
+        .navbar-trans .navbar-nav .nav-link.disabled {
+            color: rgba(255, 255, 255, .25)
+        }
+
+        .navbar-trans .navbar-nav .active>.nav-link,
+        .navbar-trans .navbar-nav .nav-link.active,
+        .navbar-trans .navbar-nav .nav-link.show,
+        .navbar-trans .navbar-nav .show>.nav-link {
+            color: #fff
+        }
+
+        .navbar-trans .navbar-toggler {
+            color: rgba(255, 255, 255, .5);
+            border-color: rgba(255, 255, 255, .1)
+        }
+
+        .navbar-trans .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+        }
+
+        .navbar-trans .navbar-text {
+            color: rgba(255, 255, 255, .5)
+        }
+
+        .navbar-trans .navbar-text a {
+            color: #fff
+        }
+
+        .navbar-trans .navbar-text a:focus,
+        .navbar-trans .navbar-text a:hover {
+            color: #fff
+        }
+    </style>
 </head>
+
 <body>
-
-
-<h1>hey</h1>
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-{% else %}
-    <p>Welcome, Please log in or create an account</p>
-{% endif %}
-
-
-<div id='fl-canvas' role='main'>
-<header aria-label='Global' class='o-main-header o-main-header--floating o-main-header--signed-out' role='navigation'>
-<div class='o-main-header__logo' style="margin-top:-36px;margin-left:-25px;">
-<a class='a-steps-logo' href='http://127.0.0.1:8000/itrack' >
-<img src=" {% static "img/1.png " %}" alt="img" style="width:135px;height:135px;">
-
-</a>
-
-</div>
-<div class='o-main-header__tools'>
-<div class='o-main-header__nav-tools'>
-
-
-<div class='o-main-header__main-nav-signin'>
-  {% if user.is_authenticated %}
-  <a class='a-block-button' href='/users/logout'>log out</a>
-      <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-  {% else %}
-  <a class='a-block-button' href='/users/login'>Sign in</a>
-  <a class='a-block-button' href='/users/signup'>Sign up</a>
-  {% endif %}
-
-
-</div>
-</div>
-</div>
-<div class='o-main-header__main-nav'>
-<div class='m-menu m-menu--main' id='main-menu'>
-<div class='m-pocket-belt__content m-pocket-belt__content--header'>
-<div class='m-pocket-belt__pocket'>
-<a class='m-pocket-belt__pocket-link' href='/courses/categories'>
-<div class='m-pocket-belt__pocket-label'>Categories</div>
-</a>
-</div>
-<div class='m-pocket-belt__pocket'>
-<a class='m-pocket-belt__pocket-link' href='/courses'>
-<div class='m-pocket-belt__pocket-label'>Courses</div>
-</a>
-</div>
-<div class='m-pocket-belt__pocket'>
-<a class='m-pocket-belt__pocket-link' href='/programs'>
-<div class='m-pocket-belt__pocket-label'>Programs</div>
-</a>
-</div>
-<div class='m-pocket-belt__pocket'>
-<a class='m-pocket-belt__pocket-link' href='/degrees'>
-<div class='m-pocket-belt__pocket-label'>Degrees</div>
-</a>
-</div>
-
-</div>
-</div>
-
-</div>
-</header>
-
-
-</div>
-{% block content %}
-
-{% endblock %}
-
-<footer class='m-page-footer'>
-
-<div class='a-section m-page-footer__secondary-nav'>
-<div class='m-brackets-large'>
-<div class='m-brackets-large__row'>
-<div class='m-brackets-large__block'>
-<h3 class='m-brackets-large__block__heading'>
-<a class='a-block-button js-ga-track'  href='#'>Using Itrack</a>
-</h3>
-<div class='m-brackets-large__block__content'>
-<ul class='m-menu m-menu--discovery'>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track'  href='#'>Why it works</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track'  href='#'>Proving your learning</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Learning guide</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Learner stories</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Child safety</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>With students</a>
-</li>
-</ul>
-</div>
-</div>
-<div class='m-brackets-large__block'>
-<h3 class='m-brackets-large__block__heading'>
-<a class='a-block-button js-ga-track' >About FutureLearn</a>
-</h3>
-<div class='m-brackets-large__block__content'>
-<ul class='m-menu m-menu--discovery'>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Our team</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Our values</a>
-</li>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Press</a>
-</li>
-</ul>
-</div>
-</div>
-
-<div class='m-brackets-large__block'>
-<h3 class='m-brackets-large__block__heading'>
-<a class='a-block-button js-ga-track' href='#'>Partners</a>
-</h3>
-<div class='m-brackets-large__block__content'>
-<ul class='m-menu m-menu--discovery'>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Become a partner</a>
-</li>
-</ul>
-</div>
-</div>
-<div class='m-brackets-large__block'>
-<h3 class='m-brackets-large__block__heading'>
-<a class='a-block-button js-ga-track' href='#'>FAQ</a>
-</h3>
-</div>
-<div class='m-brackets-large__block'>
-<h3 class='m-brackets-large__block__heading'>
-<a class='a-block-button js-ga-track' href='#'>Blog</a>
-</h3>
-</div>
-</div>
-</div>
-
-</div>
-<div class='a-section a-section--inverse m-page-footer__core'>
-<div class='m-core-page-footer'>
-<div aria-label='Mission statement' class='m-core-page-footer__mission-statement'>
-<p>
-FutureLearn aims to pioneer the best social learning experiences
-for everyone,&nbsp;anywhere.
-</p>
-</div>
-<footer class="w3-container w3-padding-64 w3-left w3-opacity">
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official  w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
-</footer>
-<nav aria-label='Footer' class='m-core-page-footer__bottom-nav'>
-<nav aria-label='Footer (menu)' class='m-core-page-footer__menu'>
-<ul class='m-menu m-menu--footer'>
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Terms</a>
-</li>
-
-
-<li class='m-menu__item'>
-<a class='a-block-button js-ga-track' href='#'>Contact</a>
-</li>
-
-</ul>
-</nav>
-</nav>
-</div>
-
-</div>
-</footer>
-
-<script src="https://cdn.futurelearn.com/assets/application-5e6d0961650bf982f062d381888d822fd258ae35c5f2e166576179d4d4ab07bc.js"></script>
+    <span id="top"></span>
+    <div class="main">
+        <!-- delete this div in other templates -->
 
 
 
+        <nav class="navbar navbar-expand-lg  navbar-trans bg-trans fixed-top">
+            <a class="navbar-brand" href="#">
+                <img src="{% static '1.png' %}" width="150px;" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign in/Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- content start Here -->
+        <div id="welcome" class="section">
+            <div class="text-center col-sm-4">
+                <h2>Welcome again to iTrack</h2>
+                <br>
+                <p>The shortest way to determine your technical future.Don't waste time, and use our free service.. ..Now !</p>
+                <a href="#" class="btn btn-info">Start Questionnaire</a>
+            </div>
+        </div>
+        <div class="section">
+            <a href="#about" class="down-btn text-center">↓</a>
+        </div>
+        <div id="about" class="section">
+            <div class="text-center col-sm-8 col-md-6">
+                <h2>ABOUT iTrack</h2>
+                <br>
+                <p>We have noticed most of newcomers, undergraduates and even fresh graduates have problems about understanding
+                    what will they are studying or even how to improve themselves in what they have studied recently.
+                    <br>Here in iTrack project we aim to find their very favourite specialisation and recommendation for some
+                    tracks and paths to reach their perfection in this specialisation.</p>
+                <a href="Javascript:void(0)" class="btn btn-link text-info">Subscribe us to be the first to know about our new articles. </a>
+                <form class="">
+                    <input type="text" class="form-control text-center" placeholder="Email address">
+                    <button type="submit" class="btn btn-primary mt-1">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- content end Here -->
+    </div>
+    <!-- d -->
+    <footer class="text-center">
+        <span>&copy; iTrack
+            <a href="#top" class="top-btn">↑</a> Proudly created with TheAtito</span>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+            $("a").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
+    </script>
 </body>
 
 </html>
