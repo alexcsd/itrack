@@ -11,7 +11,7 @@
         h3,
         h4,
         a.btn {
-            font-family: 'Kavivanar', sans-serif;
+            font-family: 'Raleway', sans-serif;
         }
 
         body,
@@ -26,22 +26,10 @@
         .main {
             height: 300%;
             background-color: rgba(0, 0, 0, 0.5);
-            background: linear-gradient( rgba(0, 0, 0, .8),
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.6),
+            background: linear-gradient( 
+            rgba(0, 0, 0, .6),
+            rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.4),
-            rgba(0, 0, 0, 0.4),
-            rgba(0, 0, 0, 0.2),
-            rgba(0, 0, 0, 0.2),
-            rgba(0, 0, 0, 0),
-            rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, .2),
-            rgba(255, 255, 255, .4),
-            rgba(255, 255, 255, .6),
-            rgba(255, 255, 255, .8),
-            rgba(255, 255, 255, .9),
-            rgba(255, 255, 255, 1),
             rgba(255, 255, 255, 1),
             rgba(255, 255, 255, 1));
         }
@@ -111,6 +99,19 @@
             color: black;
             padding: 5px;
         }
+        .forms{
+            position: fixed;
+            bottom: 0;
+            top:0;
+            left: 0;
+            right: 0;
+            z-index: 99999999;
+            background: #fff;
+            display: none;
+        }
+        #register{
+            display: none;
+        }
 
         .bg-trans {
             background-color: rgba(0, 0, 0, 0) !important;
@@ -174,3 +175,13 @@
         .navbar-trans .navbar-text a:hover {
             color: #fff
         }
+        .btn{
+            border-radius:0 !important;
+        }
+        
+        .btn-dblue{color:#fff;background-color:#0b254a;border-color:#0b254a}
+        .btn-dblue:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}
+        .btn-dblue.focus,.btn-dblue:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
+        .btn-dblue.disabled,.btn-dblue:disabled{color:#fff;background-color:#0b254a;border-color:#0b254a}
+        .btn-dblue:not(:disabled):not(.disabled).active,.btn-dblue:not(:disabled):not(.disabled):active,.show>.btn-dblue.dropdown-toggle{color:#fff;background-color:#0062cc;border-color:#005cbf}
+        .btn-dblue:not(:disabled):not(.disabled).active:focus,.btn-dblue:not(:disabled):not(.disabled):active:focus,.show>.btn-dblue.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
