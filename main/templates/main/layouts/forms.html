@@ -1,3 +1,4 @@
+
 <div class="forms">
     <div class="m-5">
         <button type="button" class="close formssh" aria-label="Close">
@@ -9,7 +10,16 @@
             <h1 class="text-center m-5" id="forms-title">Sign in</h1>
             <div class="row  d-flex justify-content-center">
                 <div class="col-md-5 p-3 p-lg-5" id="register">
-                    <form action="">
+                  <form enctype="multipart/form-data" action="/users/signup/" method="post">
+                  	{%csrf_token%}
+                  	{{register_form}}
+                  	<br>
+                  	<input type="submit" name="" value="submit">
+
+                    <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignin">Already a member? login</a>
+
+                  </form>
+                    <!-- <form action="">
                         <div class="input-group mb-2">
                             <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
                         </div>
@@ -21,10 +31,18 @@
                         </div>
                         <button type="button" class="btn btn-dblue btn-lg btn-block">Go</button>
                         <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignin">Already a member? login</a>
-                    </form>
+                    </form> -->
                 </div>
                 <div class="col-md-5 p-3 p-lg-5" id="login">
-                    <form action="">
+                  <form enctype="multipart/form-data" action="/users/login/" method="post">
+                    {%csrf_token%}
+                    {{login_form}}
+                    <input type="submit" name="" value="submit">
+
+
+                    <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignup">Don't have an account? Sign up</a>
+                  </form>
+                    <!-- <form action="">
                         <div class="input-group mb-2">
                             <input type="email" class="form-control is-invalid" placeholder="Email" aria-describedby="basic-addon1">
                             <div class="invalid-feedback">
@@ -42,7 +60,7 @@
                         </div>
                         <button type="button" class="btn btn-dblue btn-lg btn-block">Go</button>
                         <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignup">Don't have an account? Sign up</a>
-                    </form>
+                    </form> -->
                 </div>
 
                 <div class="col-md-5 p-3 p-lg-5">

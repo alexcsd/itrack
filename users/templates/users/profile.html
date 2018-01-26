@@ -1,0 +1,9 @@
+
+  <div style="padding-top: 200px; padding-right: 500px"> <img align='right' width='150px' src="{{user.profile.img_src}}" alt="">
+    <br><br><br><br><br>
+    <p style="color:black" align="right">{{user.profile.bio}}</p>
+
+    <form action="/users/logout/" method="post">
+	{%csrf_token%}
+	<input  type="submit" value="logout">
+</div> 

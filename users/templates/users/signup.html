@@ -7,9 +7,12 @@
 	<link rel="stylesheet" href="{%static "users/bootstrap.css" %}">
 </head>
 <body>
-<form action="/users/signup/" method="post">
+<form enctype="multipart/form-data" action="/users/signup/" method="post">
 	{%csrf_token%}
 	{{form}}
+	<input type="text" name="bio" value="">
+	<input type="file" name="myfile" value="">
+	<br>
 	<input type="submit" name="" value="submit">
 
 

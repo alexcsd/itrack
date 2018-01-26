@@ -1,3 +1,10 @@
+.helptext{
+  display: none;
+}
+/*  */
+
+
+
 .float-right {
             float: right;
         }
@@ -26,7 +33,7 @@
         .main {
             height: 300%;
             background-color: rgba(0, 0, 0, 0.5);
-            background: linear-gradient( 
+            background: linear-gradient(
             rgba(0, 0, 0, .6),
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.4),
@@ -178,7 +185,7 @@
         .btn{
             border-radius:0 !important;
         }
-        
+
         .btn-dblue{color:#fff;background-color:#0b254a;border-color:#0b254a}
         .btn-dblue:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}
         .btn-dblue.focus,.btn-dblue:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
