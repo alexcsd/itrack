@@ -12,55 +12,33 @@
                 <div class="col-md-5 p-3 p-lg-5" id="register">
                   <form enctype="multipart/form-data" action="/users/signup/" method="post">
                   	{%csrf_token%}
-                  	{{register_form}}
-                  	<br>
-                  	<input type="submit" name="" value="submit">
-
+                     {% for field in register_form %}
+                    <div class="input-group mb-2">
+                        {{ field }} 
+                        {% if field.errors %}
+                        <div class="invalid-feedback">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="button" class="btn btn-dblue btn-lg btn-block">Go</button>
                     <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignin">Already a member? login</a>
-
                   </form>
-                    <!-- <form action="">
-                        <div class="input-group mb-2">
-                            <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control" placeholder="Confirm password" aria-describedby="basic-addon1">
-                        </div>
-                        <button type="button" class="btn btn-dblue btn-lg btn-block">Go</button>
-                        <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignin">Already a member? login</a>
-                    </form> -->
                 </div>
                 <div class="col-md-5 p-3 p-lg-5" id="login">
-                  <form enctype="multipart/form-data" action="/users/login/" method="post">
-                    {%csrf_token%}
-                    {{login_form}}
-                    <input type="submit" name="" value="submit">
-
-
-                    <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignup">Don't have an account? Sign up</a>
-                  </form>
-                    <!-- <form action="">
+                    <form enctype="multipart/form-data" action="/users/login/" method="post">
+                        {% csrf_token %}
+                        {% for field in login_form %}
                         <div class="input-group mb-2">
-                            <input type="email" class="form-control is-invalid" placeholder="Email" aria-describedby="basic-addon1">
-                            <div class="invalid-feedback">
-                                Please enter email.
-                            </div>
+                             {{ field }}
+                             {% if field.errors %}
+                             <div class="invalid-feedback">{{ field.errors }}</div>
+                             {% endif %}
                         </div>
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="form-check mb-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label  w-100" for="exampleCheck1">Remember me
-                                <a href="#" class=" float-right">Forgot password</a>
-                            </label>
-                        </div>
+                        {% endfor %}
                         <button type="button" class="btn btn-dblue btn-lg btn-block">Go</button>
                         <a href="Javascript:void(0)" class="btn btn-link text-center w-100" id="showsignup">Don't have an account? Sign up</a>
-                    </form> -->
+                    </form>
+                    
                 </div>
 
                 <div class="col-md-5 p-3 p-lg-5">

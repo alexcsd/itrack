@@ -8,7 +8,7 @@
   background: rgba(255, 255, 255, .7);
   }
 
-
+/* Global css */
         * {
             font-family: 'Raleway', sans-serif;
         }
@@ -29,8 +29,18 @@
             background-size: cover;
             background-attachment: fixed;
         }
-
+         .section p {
+            font-size: 20px;
+        }
+        .section-1{
+          background: rgba(0, 0, 0, 0.5);
+        }
+        .section-1 p{
+          font-size: 25px;
+        }
+/* welcome questionnaire page */
         .main {
+            /* take inside it 3 pages will be changed for mobile view */
             height: 300%;
             background-color: rgba(0, 0, 0, 0.5);
             background: linear-gradient(
@@ -48,15 +58,7 @@
             align-items: center;
         }
 
-        .section p {
-            font-size: 20px;
-        }
-        .section-1{
-          background: rgba(0, 0, 0, 0.5);
-        }
-        .section-1 p{
-          font-size: 25px;
-        }
+       
         #welcome {
             color: white;
         }
@@ -68,7 +70,7 @@
         .inline-block {
             display: inline-block;
         }
-
+/* Top and Go About buttons */
         .top-btn,
         .down-btn {
             width: 50px;
@@ -105,12 +107,13 @@
         .down-btn:hover {
             text-decoration: none;
         }
-
+/* footer styling */
         footer {
             background: white;
             color: black;
             padding: 5px;
         }
+        /* forms div styling */
         .forms{
             position: fixed;
             bottom: 0;
@@ -124,7 +127,7 @@
         #register{
             display: none;
         }
-
+/* overriding for some bootstrap 4 classes */
         .bg-trans {
             background-color: rgba(0, 0, 0, 0) !important;
         }
@@ -197,3 +200,4 @@
         .btn-dblue.disabled,.btn-dblue:disabled{color:#fff;background-color:#0b254a;border-color:#0b254a}
         .btn-dblue:not(:disabled):not(.disabled).active,.btn-dblue:not(:disabled):not(.disabled):active,.show>.btn-dblue.dropdown-toggle{color:#fff;background-color:#0062cc;border-color:#005cbf}
         .btn-dblue:not(:disabled):not(.disabled).active:focus,.btn-dblue:not(:disabled):not(.disabled):active:focus,.show>.btn-dblue.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
+/* end of big screen Styles*/
