@@ -1,16 +1,16 @@
-.helptext{
-  display: none;
-}
-/*  */
+.rcorners2 {
+    border-radius: 0px ;
+    background: #fff;
+    width: 25%;
+  }
+  .rcorners1 {
+  border-radius: 0px 50px;
+  background: rgba(255, 255, 255, .7);
+  }
 
-
-
-.float-right {
-            float: right;
-        }
 
         * {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Raleway', sans-serif;
         }
 
         h1,
@@ -51,7 +51,12 @@
         .section p {
             font-size: 20px;
         }
-
+        .section-1{
+          background: rgba(0, 0, 0, 0.5);
+        }
+        .section-1 p{
+          font-size: 25px;
+        }
         #welcome {
             color: white;
         }

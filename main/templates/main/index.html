@@ -1,13 +1,14 @@
 {% extends "main/layouts/base.html" %}
 
 {% block content %}
+<div class="main w-100">
         <!-- content start Here -->
         <div id="welcome" class="section">
             <div class="text-center col-sm-4">
                 <h2>Welcome again to iTrack</h2>
                 <br>
                 <p>The shortest way to determine your technical future.Don't waste time, and use our free service.. ..Now !</p>
-                <a href="#" class="btn btn-dblue">Start Questionnaire</a>
+                <a href="{% url 'questionnaire'  %}" class="btn btn-dblue">Start Questionnaire</a>
             </div>
         </div>
         <div class="section">

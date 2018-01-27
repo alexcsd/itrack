@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('',  views.questionnaire, name='questionnaire'),
-    path('nextquestion/<id>',  views.next_question, name='next_question'),
+    path('questions',  views.view_questions, name='questions'),
+    path('nextquestion',  views.next_question, name='next_question'),
+
 
 ]
