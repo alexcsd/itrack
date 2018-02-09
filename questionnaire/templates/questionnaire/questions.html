@@ -1,12 +1,9 @@
-{%extends "main/layouts/base.html"%} {% block content %}
+{%extends "questionnaire/layouts/base.html"%} {% block content %}
 <div class=" h-100 w-100 d-flex justify-content-center align-items-center section-1">
-    <div class="text-center col-sm-8 rcorners1 p-5">
-        <form class="" action="{% url 'next_question' %}" method="get">
+    <div class="col-sm-8 rcorners1 p-5">
+        <form class="" action="{% url 'questionnaire:next_question' %}" method="get">
 
-            <p>Q: {{question.question_title}} ?
-                <br>
-                <br>
-
+            <p>Q: {{question.question_title}} ?</p>
                 <label class="btn btn-primary active">
                     <input id="radio1" name="answer" type="radio" value="{{question.nextTrue}}">
                     <span>Yes, I'm already study computer and work with it . </span>
@@ -23,11 +20,11 @@
         </label> -->
 
 
-            </p>
-            <div class="rcorners2">
+            
+            <!-- <div class="">
                 <h3>Dont forget :</h3>
             </div>
-            <p>"i don't know the answer." is already an answer . </p>
+            <p>"i don't know the answer." is already an answer . </p> -->
             <button type="submit" class="btn btn-dblue">Next Question</button>
         </form>
     </div>
