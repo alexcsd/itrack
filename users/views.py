@@ -10,34 +10,27 @@ context = {
     'register_form': register_form,
     'login_form': login_form
     }
+
 def profile_view(request, username):
 	global context
 	context.update({'user_profile':username})
 	return render(request,'users/profile.html', context)
 
-#we need to redirect back with errors 
 class SignupView(FormView):
-	template_name='questionnaire/index.html'#we don't have a specific template for sign up to show ; it's in all pages
+	template_name='users/register.html'
 	form_class=UserCreationForm
-	success_url='/'
 	def form_valid(self,form):
 		user=form.save()
 		login(self.request,user)
-		return redirect('/') #use namespaces ex: redirect('user:profile')
-	def form_invalid(self,form):
-		return render(self.request,'questionnaire/index.html',{'register_form':form, 'login_form':login_form})
+		return redirect('user:profile',user.username)
 
-#same as Signup
 class LoginView(FormView):
-	template_name='questionnaire/index.html'
+	template_name='users/login.html'
 	form_class=AuthenticationForm
-	success_url='/'
 	def form_valid(self,form):
 		user=form.get_user()
 		login(self.request,user)
-		return redirect('/')
-	def form_invalid(self,form):
-		return render(self.request,'questionnaire/index.html',{'login_form':form, 'register_form':register_form})
+		return redirect('user:profile',user.username)
 
 
 def logout_view(request):
