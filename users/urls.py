@@ -8,5 +8,6 @@ urlpatterns=[
 path('signup/',SignupView.as_view(),name="signup"),
 path('login/',LoginView.as_view(),name="signin"),
 path('logout/',views.logout_view,name="logout"),
-path('profile/<slug:username>',views.profile_view,name="profile"),
+path('profile/',views.current_profile,name="cprofile"),
+path('profile/<slug:username>/',views.profile_view,name="profile"),
 ]

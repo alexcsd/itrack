@@ -11,6 +11,10 @@ context = {
     'login_form': login_form
     }
 
+def current_profile(request):
+	if request.user.is_authenticated:
+		return redirect('user:profile',request.user.username)
+	return redirect('questionnaire:welcome')
 def profile_view(request, username):
 	global context
 	context.update({'user_profile':username})
