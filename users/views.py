@@ -25,7 +25,7 @@ class SignupView(FormView):
 	form_class=UserCreationForm
 	def form_valid(self,form):
 		user=form.save()
-		login(self.request,user)
+		login(self.request,user,backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('user:profile',user.username)
 
 class LoginView(FormView):
@@ -33,7 +33,7 @@ class LoginView(FormView):
 	form_class=AuthenticationForm
 	def form_valid(self,form):
 		user=form.get_user()
-		login(self.request,user)
+		login(self.request,user,backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('user:profile',user.username)
 
 
