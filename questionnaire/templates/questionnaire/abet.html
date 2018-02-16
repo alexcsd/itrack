@@ -1,0 +1,59 @@
+{%extends "questionnaire/layouts/base.html"%} {% block content %}
+<div class=" h-100 w-100 d-flex justify-content-center align-items-center section-1">
+    <div class="col-sm-8 rcorners1 p-5">
+        <form class="" action="{% url 'questionnaire:abet' %}" method="post">
+          {% csrf_token %}
+          {{subject}}
+            <p id="q_text">Q: {{question.question_title}} ?</p>
+                <label class="btn btn-primary active">
+                    <input id="radio1" name="answer" type="radio" value=1>
+                    <span>Yes, I'm already study computer and work with it . </span>
+                </label>
+                <br>
+                <label class="btn btn-primary">
+                    <input id="radio2" name="answer" type="radio" value=0>
+                    <span>No, this is my first time .</span>
+                </label>
+                <br>
+                <input type="text" id='vector' name="vector" value="" style="display:none">
+            <button style="display:none" id='submit' type="submit" class="btn btn-dblue">submit</button>
+        </form>
+        <button onclick="next_q()" id="next" class="btn btn-dblue">Next Question</button>
+
+    </div>
+</div>
+<script type="text/javascript">
+answers_vector=[]
+counter=1
+questions={1:'do you have ABET skill 1??',
+2:'do you have ABET skill 2?',
+3:'do you have ABET skill 3?',
+4:'do you have skill 4??',
+5:'do you have ABET skill 5?',
+6:'do you have ABET skill 6?',
+7:'do you have ABET skill 7?',
+8:'do you have ABET skill 8?',
+9:'do you have ABET skill 9?',
+10:'do you have ABET skill 10?'
+}
+  function next_q(){
+    // VERY IMPORTANT:
+    // there's a simple problem here is that the last answer doesnt get submitted, have to fix it later
+    if (document.getElementById('radio1').checked || document.getElementById('radio2').checked){
+      (document.getElementById('radio1').checked) ? answers_vector.push(1) : answers_vector.push(0);
+    counter++
+    q_text=document.getElementById('q_text')
+    q_text.innerText=questions[String(counter)]
+    document.getElementById('radio1').checked=false
+    document.getElementById('radio2').checked=false
+    console.log(answers_vector)
+      if (counter==10){
+        document.getElementById('submit').style.display='block'
+        document.getElementById('next').style.display='none'
+        document.getElementById('vector').value=answers_vector.join(',')
+      }
+  }
+}
+</script>
+
+{% endblock %}

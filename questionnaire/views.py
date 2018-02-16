@@ -10,6 +10,17 @@ context = {
     'register_form': register_form,
     'login_form': login_form
     }
+
+def abet(request):
+    from . import abet
+    if request.method=='POST':
+        answers_vector=request.POST['vector']
+        best_subject=abet.get_track( answers_vector.split(','))
+        #return render(request,'questionnaire/abet.html',{'subject':best_subject})
+        context.update({'recommended':best_subject})
+        return render(request, 'questionnaire/recommended.html', context)
+    return render(request,'questionnaire/abet.html',context)
+
 def welcome(request):
     return render(request,'questionnaire/welcome.html',context)
 
