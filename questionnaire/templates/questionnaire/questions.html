@@ -1,34 +1,39 @@
-{%extends "questionnaire/layouts/base.html"%} {% block content %}
-<div class=" h-100 w-100 d-flex justify-content-center align-items-center section-1">
-    <div class="col-sm-8 rcorners1 p-5">
-        <form class="" action="{% url 'questionnaire:next_question' %}" method="get">
-
-            <p>Q: {{question.question_title}} ?</p>
-                <label class="btn btn-primary active">
-                    <input id="radio1" name="answer" type="radio" value="{{question.nextTrue}}">
-                    <span>Yes, I'm already study computer and work with it . </span>
-                </label>
-                <br>
-                <label class="btn btn-primary">
-                    <input id="radio2" name="answer" type="radio" value="{{question.nextFalse}}">
-                    <span>No, this is my first time .</span>
-                </label>
-                <br>
-                <!-- <label class="btn btn-primary">
-        <input id="radio2" name="radio" type="radio" >
-        <span>I don't know the answer.</span>
-        </label> -->
-
-
-            
-            <!-- <div class="">
-                <h3>Dont forget :</h3>
+{%extends "questionnaire/layouts/base.html"%} 
+{% block content %}
+<div class=" pb-5 container">
+    <div class="col-sm-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                {% for skill in skills %}
+                <h2>{{skill}}</h2>
+                    {% for question in skill.question_set.all %}
+                    <h4 class="text-danger">{{question}}</h4>
+                        {% for answer in question.answer_set.all %}
+                        <p>{{answer}}</p>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
             </div>
-            <p>"i don't know the answer." is already an answer . </p> -->
-            <button type="submit" class="btn btn-dblue">Next Question</button>
-        </form>
+        </div>
     </div>
 </div>
 
 
+
+{% endblock %}
+{% block scripts %} 
+<script>
+    $.get("{% url 'questionnaire:questionFetch' %}", function (data) {
+            console.log(data);
+        })
+            .done(function () {
+                console.log("second success");
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("finished");
+            });
+</script>
 {% endblock %}

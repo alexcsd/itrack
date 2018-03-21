@@ -6,6 +6,6 @@ urlpatterns = [
     path('',  views.welcome, name='welcome'),
     path('abet',  views.abet, name='abet'),
     path('questionnaire',  views.index, name='index'),
-    path('questions',  views.view_questions, name='questions'),
-    path('nextquestion',  views.next_question, name='next_question'),
+    path('questions',  views.question, name='question'),
+    path('questionFetch',  views.question, name='questionFetch'),
 ]

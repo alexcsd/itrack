@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, httpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Question
+from .models import Skill, Question, Answer
 
 
 # Create your views here.
@@ -28,19 +28,17 @@ def index(request):
     return render(request, 'questionnaire/index.html', context)
 
 
-def view_questions(request):
-    question = Question.objects.get(pk=1)
+def question(request):
     global context
-    context.update({'question':question})
+    context.update({
+        'skills':Skill.objects.all(),
+    })
     return render(request, 'questionnaire/questions.html', context)
 
-def next_question(request):
-    id = request.GET['answer']
-    if id.isdigit():
-        question = Question.objects.get(pk=id)
-        context.update({'question':question})
-        return render(request, 'questionnaire/questions.html', context)
-
-    else:
-        context.update({'recommended':id})
-        return render(request, 'questionnaire/recommended.html', context)
+def questionFetch(request):
+    ctxt = {
+        'skills':Skill.objects.all(),
+        'questions':Question.objects.all(),
+        'answers':Answer.objects.all()
+    }
+    return httpResponse(ctxt)

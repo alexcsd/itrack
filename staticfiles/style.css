@@ -1,14 +1,32 @@
-.rcorners2 {
-    border-radius: 0px ;
-    background: #fff;
-    display: inline;
-  }
-  .rcorners1 {
-  border-radius: 0px 50px;
-  background: rgba(255, 255, 255, .7);
-  }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    padding-top: 150px;
+    /* Margin bottom by footer height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Set the fixed height of the footer here */
+    line-height: 60px;
+    /* Vertically center the text there */
+    background: white;
+    color: black;
+}
 
 /* Global css */
+
         * {
             font-family: 'Raleway', sans-serif;
         }
@@ -23,7 +41,6 @@
 
         body,
         html {
-            height: 100%;
             background-image: url("bg.jpg");
             background-position: center;
             background-size: cover;
@@ -106,12 +123,6 @@
         .top-btn:hover,
         .down-btn:hover {
             text-decoration: none;
-        }
-/* footer styling */
-        footer {
-            background: white;
-            color: black;
-            padding: 5px;
         }
         /* forms div styling */
         .forms{
