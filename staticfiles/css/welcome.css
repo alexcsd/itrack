@@ -1,0 +1,205 @@
+/* Global css */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html{
+    min-height: 100%;
+    background-image: url("/static/img/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+body {
+    background: none;
+    background-image: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+}
+
+#welcome,#about{
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    height: 60px;
+    /* Set the fixed height of the footer here */
+    line-height: 60px;
+    /* Vertically center the text there */
+    background: white;
+    color: black;
+}
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+
+.inline-block {
+    display: inline-block;
+}
+
+/* Top and Go About buttons */
+
+.top-btn,
+.down-btn {
+    width: 50px;
+    line-height: 50px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    z-index: 999;
+}
+
+.top-btn {
+    background: rgb(11, 37, 74);
+    border: 1px solid black;
+}
+
+.top-btn:hover {
+    color: black;
+    background: white;
+}
+
+.down-btn {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+    color: white;
+}
+
+.down-btn:hover {
+    color: black;
+    background: white;
+}
+
+.top-btn:hover,
+.down-btn:hover {
+    text-decoration: none;
+}
+
+/* forms div styling */
+
+.forms {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999999;
+    background: #fff;
+    display: none;
+}
+
+#register {
+    display: none;
+}
+
+/*profile*/
+
+/* overriding for some bootstrap 4 classes */
+
+.bg-trans {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+a.bg-trans:focus,
+a.bg-trans:hover,
+button.bg-trans:focus,
+button.bg-trans:hover {
+    background-color: #1d2124 !important
+}
+
+.navbar-trans .navbar-brand {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.navbar-trans .navbar-brand:focus,
+.navbar-trans .navbar-brand:hover {
+    color: #fff
+}
+
+.navbar-trans .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, .5)
+}
+
+.navbar-trans .navbar-nav .nav-link:focus,
+.navbar-trans .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, .75)
+}
+
+.navbar-trans .navbar-nav .nav-link.disabled {
+    color: rgba(255, 255, 255, .25)
+}
+
+.navbar-trans .navbar-nav .active>.nav-link,
+.navbar-trans .navbar-nav .nav-link.active,
+.navbar-trans .navbar-nav .nav-link.show,
+.navbar-trans .navbar-nav .show>.nav-link {
+    color: #fff
+}
+
+.navbar-trans .navbar-toggler {
+    color: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, .1)
+}
+
+.navbar-trans .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+}
+
+.navbar-trans .navbar-text {
+    color: rgba(255, 255, 255, .5)
+}
+
+.navbar-trans .navbar-text a {
+    color: #fff
+}
+
+.navbar-trans .navbar-text a:focus,
+.navbar-trans .navbar-text a:hover {
+    color: #fff
+}
+
+.btn {
+    border-radius: 0 !important;
+}
+
+.btn-dblue {
+    color: #fff;
+    background-color: #0b254a;
+    border-color: #0b254a
+}
+
+.btn-dblue:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc
+}
+
+.btn-dblue.focus,
+.btn-dblue:focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .5)
+}
+
+.btn-dblue.disabled,
+.btn-dblue:disabled {
+    color: #fff;
+    background-color: #0b254a;
+    border-color: #0b254a
+}
+
+.btn-dblue:not(:disabled):not(.disabled).active,
+.btn-dblue:not(:disabled):not(.disabled):active,
+.show>.btn-dblue.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+}
+
+.btn-dblue:not(:disabled):not(.disabled).active:focus,
+.btn-dblue:not(:disabled):not(.disabled):active:focus,
+.show>.btn-dblue.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .5)
+}

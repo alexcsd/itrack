@@ -1,0 +1,67 @@
+{% load static %}
+<div class="row">
+    <div class="mb-2 col-sm-2 col-md-2 nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+            aria-selected="true">
+            <i class="far fa-user fa-4x"></i>
+        </a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+            aria-selected="false">
+            <i class="fas fa-lock fa-4x"></i>
+        </a>
+    </div>
+    <div class="col-sm-10 col-md-10 tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" @submit.prevent="onSubmit">
+                <!-- user setting -->
+                <!-- profile picture -->
+                <div class="parent">
+                    <img class="image1 rounded" src="{% static 'img/sampleavatar.png' %}" />
+                    <label for="image_choose" class="image2 fas fa-camera fa-4x"></label>
+                    <input onchange="imageChanged()" style="display:none" type="file" name="" id="image_choose">
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <!-- name -->
+                <div class="form-group">
+                    <label class="form-control-label" for="inputDanger1">Username</label>
+                    <input v-model="user.username" readonly class="form-control" type="text">
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="inputDanger1">Fullname</label>
+                    <input v-model="user_form.name" class="form-control" type="text">
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <!-- short bio -->
+                <div class="form-group">
+                    <label class="form-control-label" for="inputDanger1">Bio</label>
+                    <textarea v-model="user_form.bio" class="form-control" rows="3"></textarea>
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">
+                    <!-- <i  class="fas fa-spinner fa-pulse"></i> -->
+                    Save</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" >
+                <!-- security setting -->
+                <!-- email -->
+                <div class="form-group">
+                    <label class="form-control-label" for="inputDanger1">Email address</label>
+                    <input v-model="security_form.email" class="form-control" type="email">
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <!-- password -->
+                <div class="form-group">
+                    <label class="form-control-label" for="inputDanger1">Change password</label>
+                    <input v-model="security_form.password" class="form-control" type="password">
+                    <div  class="invalid-feedback"></div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-warning">
+                    <!-- <i  class="fas fa-spinner fa-pulse"></i> -->
+                    Save</button>
+            </form>
+        </div>
+    </div>
+    </div>

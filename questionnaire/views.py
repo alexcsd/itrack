@@ -1,7 +1,7 @@
-from django.shortcuts import render, httpResponse
+from django.shortcuts import render, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Skill, Question, Answer
-
+from django.core import serializers
 
 # Create your views here.
 register_form = UserCreationForm()
@@ -27,6 +27,9 @@ def welcome(request):
 def index(request):
     return render(request, 'questionnaire/index.html', context)
 
+def result(request):
+    return render(request, 'questionnaire/result.html', context)
+
 
 def question(request):
     global context
@@ -35,10 +38,10 @@ def question(request):
     })
     return render(request, 'questionnaire/questions.html', context)
 
-def questionFetch(request):
+def question_fetch(request):
     ctxt = {
-        'skills':Skill.objects.all(),
-        'questions':Question.objects.all(),
-        'answers':Answer.objects.all()
+        'skills':Skill.objects.all().get()
     }
-    return httpResponse(ctxt)
+    objs =Skill.objects.all()
+    jsondata = serializers.serialize('json', ctxt)
+    return HttpResponse(jsondata, content_type='application/json')

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'users',
+    'watch_course',
     'questionnaire',
     'social_django',
     'django.contrib.admin',
@@ -140,7 +141,7 @@ STATICFILES_DIRS = [
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-LOGIN_URL='user:login'
+LOGIN_URL='user:signin'
 LOGIN_REDIRECT_URL = 'user:cprofile'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='637029421295-c7ka1jlol6u9coshe0387gjnhj3vag14.apps.googleusercontent.com'  #Paste CLient Key

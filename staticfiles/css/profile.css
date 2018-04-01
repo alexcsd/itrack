@@ -1,0 +1,31 @@
+#profile a{
+    text-decoration: none;
+    
+}
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+.image1 {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+}
+
+.image2 {
+    position: absolute;
+    opacity: 0.4;
+    cursor: pointer;
+    color: #fff;
+}
+
+.image2:hover {
+    opacity: .8;
+}

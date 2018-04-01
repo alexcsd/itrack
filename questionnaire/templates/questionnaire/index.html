@@ -1,23 +1,20 @@
 {% extends "questionnaire/layouts/base.html" %} {% block content %}
-
-
-<div class="h-100 w-100 d-flex justify-content-center align-items-center section-1">
-    <div class="text-white col-md-6">
-        <p class="text-center">Simply this test will help you to understand your personal, technical skills .. and what is the best place where
-            you can exploit them.
-            <br>
-            <br>
-        </p>
-        <div>
-            <h3 class="rcorners2 text-primary">Remember: </h3>
-        </div>
-        <div class="text-center">
-            <p>Try to be honest in your answers even if you don't know any answer . </p>
-            <a href="{% url 'questionnaire:questions' %}" class="btn btn-info cen">Get Started</a>
+<div class="container pt-5 pb-5">
+    <div class="h-100 w-100 d-flex justify-content-center align-items-center section-1">
+        <div class="text-white col-md-6">
+            <p class="text-center">Simply this test will help you to understand your personal, technical skills .. and what is the best place where
+                you can exploit them.
+                <br>
+                <br>
+            </p>
+            <div>
+                <h3 class="rcorners2 text-primary">Remember: </h3>
+            </div>
+            <div class="text-center">
+                <p>Try to be honest in your answers even if you don't know any answer . </p>
+                <a href="{% url 'questionnaire:questions' %}" class="btn btn-info animated bounce">Get Started</a>
+            </div>
         </div>
     </div>
 </div>
-<!-- content end Here -->
-
-
 {% endblock %}

@@ -18,7 +18,7 @@ def current_profile(request):
 def profile_view(request, username):
 	global context
 	context.update({'user_profile':username})
-	return render(request,'users/profile.html', context)
+	return render(request,'users/profile/profile.html', context)
 
 class SignupView(FormView):
 	template_name='users/register.html'

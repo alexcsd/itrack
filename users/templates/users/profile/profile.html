@@ -1,0 +1,54 @@
+{% extends 'users/layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-3 pr-3">
+			<div class="card">
+				<div class="card-body">
+					<img src="{% static 'img/sampleavatar.png' %}" alt="avatar" class="w-100 img-responsvive">
+					<h4 class="text-center text-muted">{{user.username}}</h4>
+					<ul class="nav nav-pills flex-column">
+						<li class="nav-item animated bounceIn">
+							<a class="nav-link active" data-toggle="tab" href="#profile">
+								<i class="fas fa-user"></i>
+								Profile
+							</a>
+						</li>
+						<li class="nav-item animated bounceInDown">
+							<a class="nav-link" data-toggle="tab" href="#courses">
+								<i class="fas fa-th-large"></i>
+								Courses
+							</a>
+						</li>
+						<li class="nav-item animated bounceInDown">
+							<a class="nav-link" data-toggle="tab" href="#settings">
+								<i class="fas fa-sliders-h"></i>
+								Settings
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-9  pl-3">
+			<div class="card">
+				<div class="card-body ">
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade show active" id="profile">
+							{% include "users/profile/overview.html" %}
+						</div>
+						<div class="tab-pane fade" id="courses">
+							{% include "users/profile/courses.html" %}
+						</div>
+						<div class="tab-pane fade" id="settings">
+							{% include "users/profile/settings.html" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

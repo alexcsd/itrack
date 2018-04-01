@@ -5,13 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>q</title>
+    <title>{% block title %} iTrack {% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <!-- <style media="screen">
+    <link rel="stylesheet" href="{% static 'css/bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
 
-    </style> -->
+     {% block styles %} {% endblock %}
 </head>
 
 <body>
@@ -20,50 +20,53 @@
 
 
 
+<nav class="navbar navbar-expand-lg  navbar-trans bg-trans ">
+    <a class="navbar-brand" href="{% url 'questionnaire:welcome' %}">
+        <img src="{% static 'img/logo.png' %}" width="150px;" alt="itrack-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <nav class="navbar navbar-expand-lg  navbar-trans bg-trans fixed-top">
-        <a class="navbar-brand" href="{% url 'questionnaire:welcome' %}">
-            <img src="{% static 'logo.png' %}" width="150px;" alt="itrack-logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto ">
+            <li class="nav-item active">
+                <a class="nav-link smoothscroll" href="{% url 'questionnaire:welcome' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link smoothscroll" href="{% url 'questionnaire:about' %}">About</a>
+            </li>
+            {% if user.is_authenticated %}
 
-        <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto ">
-                <li class="nav-item active">
-                    <a class="nav-link smoothscroll" href="#about">About</a>
-                </li>
-                {% if user.is_authenticated %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="Javascript:void(0)">{{user.username}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-{% block content %}
-
-{% endblock %}
-
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:profile' user.username %}">{{user.username}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+    {% block content %}
+    
+    {% endblock %}
 <footer class="text-center">
     <span>&copy; iTrack
         <a href="#top" class="top-btn smoothscroll">↑</a>
     </span>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" charset="utf-8"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" charset="utf-8"></script> {% if login_form.errors %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+
+{% if login_form.errors %}
 <script type="text/javascript">
     // $('.forms').slideDown();
     $('.forms').css('display', 'block');
@@ -81,6 +84,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        
         $(document).keydown(function (e) {
             // ESCAPE key pressed
             if (e.keyCode == 27) {
@@ -130,8 +137,9 @@
             } // End if
         });
     });
+            
 </script>
-{% block scripts %} {% endblock %}
+{% block script %} {% endblock %}
 </body>
 
 </html>

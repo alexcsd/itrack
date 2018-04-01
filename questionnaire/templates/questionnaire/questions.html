@@ -1,18 +1,121 @@
-{%extends "questionnaire/layouts/base.html"%} 
+{%extends "questionnaire/layouts/base.html"%}
+{% load static%}
+{% block title %} Questionnaire {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<style>
+    .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  /* padding: 10px 16px; */
+  font-size: 24px;
+  /* line-height: 1.33; */
+  text-align: center;
+  font-size: 24px;
+  line-height: 55px;
+  border-radius: 35px !important;
+  margin:0 auto;
+}
+.hide{
+    visibility: hidden;
+}
+.show{
+    visibility: visible;
+}
+
+</style>
+
+{% endblock %}
 {% block content %}
+
+{%  for skill in skills %}
+{{skill}}
+{%  for question in skill.question_set.all %}
+{{question}}
+{% endfor %}
+{% endfor %}
 <div class=" pb-5 container">
-    <div class="col-sm-8 offset-md-2">
-        <div class="card">
+    <div class="col-md-8 offset-md-2">
+        <div class="card mb-2 mt-2">
             <div class="card-body">
-                {% for skill in skills %}
-                <h2>{{skill}}</h2>
-                    {% for question in skill.question_set.all %}
-                    <h4 class="text-danger">{{question}}</h4>
-                        {% for answer in question.answer_set.all %}
-                        <p>{{answer}}</p>
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
+            <p>
+Class A has a higher enrollment than class B
+Class C has a lower enrollment than class B
+Class A has a lower enrollment than class C
+if the first two statements are true, the third statement is:</p>
+            <div class="row  text-center mt-2">
+                <div class="col-6">
+                    <a href="" class="btn btn-outline-info btn-circle btn-xl animated bounceIn">True</a>
+                </div>
+                <div class="col-6">
+                    <a href="" class="btn btn-outline-danger btn-circle btn-xl animated bounceIn">False</a>
+                </div>
+            </div>
+            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
+            </div>
+        </div>
+        <div class="card mb-2 mt-2">
+            <div class="card-body">
+            <p>
+Class A has a higher enrollment than class B
+Class C has a lower enrollment than class B
+Class A has a lower enrollment than class C
+if the first two statements are true, the third statement is:</p>
+            <div class="row justify-content-center text-center mt-2">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Not at all
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> rarely
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> sometimes
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> often
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> very often
+                    </label>
+                </div>
+            </div>
+            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
+            </div>
+        </div>
+        <div class="card mb-2 mt-2">
+            <div class="card-body">
+            <p>
+Class A has a higher enrollment than class B
+Class C has a lower enrollment than class B
+Class A has a lower enrollment than class C
+if the first two statements are true, the third statement is:</p>
+            <div class="row  text-center mt-2">
+                <div class="col-12">
+                    <div class="w-100" >
+                        <input data-toggle="tooltip" title="Disabled tooltip" type="range" min="1" max="100" value="50" class="slider animated flipInX" id="myRange">
+                        <small class="text-muted">Slide to change the answer</small>
+                    </div>
+                </div>
+            </div>
+            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
             </div>
         </div>
     </div>
@@ -21,7 +124,9 @@
 
 
 {% endblock %}
-{% block scripts %} 
+{% block scripts %}
+<script src="{% static 'js/slider.js' %}"></script>
+
 <script>
     $.get("{% url 'questionnaire:questionFetch' %}", function (data) {
             console.log(data);
@@ -35,5 +140,10 @@
             .always(function () {
                 console.log("finished");
             });
+        $(document).ready(() => {
+            setTimeout(() => {
+                $('.skip').addClass(' show animated fadeIn');
+            }, 5000);
+        });
 </script>
 {% endblock %}
