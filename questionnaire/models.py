@@ -9,7 +9,7 @@ class Skill(models.Model):
         return self.title + self.description
 
 class Question(models.Model):
-    Answer = models.ForeignKey(Skill, on_delete=models.CASCADE)
+    Skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     body = models.TextField()
     image = models.ImageField(blank=True)
     qtype = models.CharField(max_length=50) #TF & mcq  & meter/scale

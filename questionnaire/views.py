@@ -1,7 +1,10 @@
 from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Skill, Question, Answer
 from django.core import serializers
+from .utils import matrix
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 register_form = UserCreationForm()
@@ -33,15 +36,33 @@ def result(request):
 
 def question(request):
     global context
+    question = Question.objects.order_by('pk').first()
     context.update({
-        'skills':Skill.objects.all(),
+        'question':question,
     })
-    return render(request, 'questionnaire/questions.html', context)
-
-def question_fetch(request):
-    ctxt = {
-        'skills':Skill.objects.all().get()
+    request.session['questions_meta'] ={
+        'skills_vector':{
+            'logic':0,
+            'management':0,
+            'interaction':0,
+            'mechanical':0,
+            'communication':0,
+            'judment':0,
+            'attention':0,
+            'thinking':0,
+        },
+        'current_question_id':question.pk
     }
-    objs =Skill.objects.all()
-    jsondata = serializers.serialize('json', ctxt)
-    return HttpResponse(jsondata, content_type='application/json')
+    return render(request, 'questionnaire/questions.html', context)
+@csrf_protect
+def question_fetch(request,answer = None):
+    #get next object
+    next_question = Question.objects.all().filter(pk__gt=request.session['questions_meta']['current_question_id']).order_by('pk')[0:1]
+    next_question = Question.objects.get(pk=next_question[0].pk)
+    # if(answer):
+    #     pass
+    # else:
+    #     pass
+    # json = [{'next_question' : Question.objects.all()}]
+    # jsondata = serializers.serialize('json', next_question)
+    return JsonResponse({'question':next_question.pk,'answers':serializers.serialize('json',next_question.answer_set.all())})

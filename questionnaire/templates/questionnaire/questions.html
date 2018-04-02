@@ -42,19 +42,14 @@
 
 </style>
 
-{% endblock %}
-{% block content %}
 
-{%  for skill in skills %}
-{{skill}}
-{%  for question in skill.question_set.all %}
-{{question}}
-{% endfor %}
-{% endfor %}
 <div class=" pb-5 container">
     <div class="col-md-8 offset-md-2">
         <div class="card mb-2 mt-2">
             <div class="card-body">
+
+ {{request.session.questions_meta.current_question_id}}
+
             <p>
 Class A has a higher enrollment than class B
 Class C has a lower enrollment than class B
@@ -126,10 +121,15 @@ if the first two statements are true, the third statement is:</p>
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/ajax-setup.js' %}"></script>
 
 <script>
-    $.get("{% url 'questionnaire:questionFetch' %}", function (data) {
-            console.log(data);
+    $.post("{% url 'questionnaire:questionFetch' %}", function (data) {
+            console.log(data.answers);
+            for (answer in JSON.stringify(data.answers)) {
+                console.log(data.answers[answer]);
+                
+            }
         })
             .done(function () {
                 console.log("second success");
