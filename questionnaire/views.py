@@ -42,27 +42,49 @@ def question(request):
     })
     request.session['questions_meta'] ={
         'skills_vector':{
-            'logic':0,
-            'management':0,
-            'interaction':0,
-            'mechanical':0,
-            'communication':0,
-            'judment':0,
-            'attention':0,
-            'thinking':0,
+            'Logic':0,
+            'Management':0,
+            'Interaction':0,
+            'Mechanical':0,
+            'Communication':0,
+            'Judment':0,
+            'Attention':0,
+            'Thinking':0,
         },
         'current_question_id':question.pk
     }
     return render(request, 'questionnaire/questions.html', context)
+
+
 @csrf_protect
-def question_fetch(request,answer = None):
-    #get next object
-    next_question = Question.objects.all().filter(pk__gt=request.session['questions_meta']['current_question_id']).order_by('pk')[0:1]
-    next_question = Question.objects.get(pk=next_question[0].pk)
-    # if(answer):
-    #     pass
-    # else:
-    #     pass
-    # json = [{'next_question' : Question.objects.all()}]
-    # jsondata = serializers.serialize('json', next_question)
-    return JsonResponse({'question':next_question.pk,'answers':serializers.serialize('json',next_question.answer_set.all())})
+def question_fetch(request,pk = None):
+    if pk == None:
+        next_question = Question.objects.order_by('pk').first()
+        request.session['questions_meta'] ={
+            'skills_vector':{
+                'Logic':0,
+                'Management':0,
+                'Interaction':0,
+                'Mechanical':0,
+                'Communication':0,
+                'Judment':0,
+                'Attention':0,
+                'Thinking':0,
+            },
+            'current_question_id':next_question.pk
+        }
+    else:
+        answer = Answer.objects.get(pk=pk)
+        #logic = logic + answer.weight/logic.question.count
+        request.session['questions_meta']['skills_vector'][answer.Question.Skill.title] += answer.weight/answer.Question.Skill.question_set.count()
+        #get next object
+        next_question = Question.objects.all().filter(pk__gt=request.session['questions_meta']['current_question_id']).order_by('pk')[0:1]
+        next_question = Question.objects.get(pk=next_question[0].pk)
+        request.session['questions_meta']['current_question_id'] = next_question.pk
+    ctx = {
+        'question':next_question.body,
+        'answers':serializers.serialize('json',next_question.answer_set.all()),
+        'type':next_question.qtype
+        }
+    request.session.save()
+    return JsonResponse(ctx)

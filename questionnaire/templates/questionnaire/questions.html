@@ -32,85 +32,38 @@
   line-height: 55px;
   border-radius: 35px !important;
   margin:0 auto;
+} 
+.display-none{
+    display: none;
 }
 .hide{
     visibility: hidden;
 }
 .show{
+    display: block;
     visibility: visible;
 }
 
 </style>
 
-
+{% endblock %}
+{% block content %} 
 <div class=" pb-5 container">
     <div class="col-md-8 offset-md-2">
-        <div class="card mb-2 mt-2">
-            <div class="card-body">
-
- {{request.session.questions_meta.current_question_id}}
-
-            <p>
-Class A has a higher enrollment than class B
-Class C has a lower enrollment than class B
-Class A has a lower enrollment than class C
-if the first two statements are true, the third statement is:</p>
-            <div class="row  text-center mt-2">
-                <div class="col-6">
-                    <a href="" class="btn btn-outline-info btn-circle btn-xl animated bounceIn">True</a>
-                </div>
-                <div class="col-6">
-                    <a href="" class="btn btn-outline-danger btn-circle btn-xl animated bounceIn">False</a>
-                </div>
-            </div>
-            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
+        <div id="tf" class="card mb-2 mt-2">
+            <div class="card-body ">
+                <p class="question"></p>
+                <div class="row answers text-center mt-2"></div>
+                <a href="#" class="btn btn-link answer mt-2 hide skip">skip</a>
             </div>
         </div>
-        <div class="card mb-2 mt-2">
+        <div id="mcq" class="card mb-2 mt-2 display-none">
             <div class="card-body">
-            <p>
-Class A has a higher enrollment than class B
-Class C has a lower enrollment than class B
-Class A has a lower enrollment than class C
-if the first two statements are true, the third statement is:</p>
-            <div class="row justify-content-center text-center mt-2">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Not at all
-                    </label>
-                    <label class="btn btn-outline-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> rarely
-                    </label>
-                    <label class="btn btn-outline-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> sometimes
-                    </label>
-                    <label class="btn btn-outline-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> often
-                    </label>
-                    <label class="btn btn-outline-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> very often
-                    </label>
+                <p class="question"></p>
+                <div class="row justify-content-center text-center mt-2">
+                    <div class="btn-group btn-group-toggle answers" data-toggle="buttons"></div>
                 </div>
-            </div>
-            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
-            </div>
-        </div>
-        <div class="card mb-2 mt-2">
-            <div class="card-body">
-            <p>
-Class A has a higher enrollment than class B
-Class C has a lower enrollment than class B
-Class A has a lower enrollment than class C
-if the first two statements are true, the third statement is:</p>
-            <div class="row  text-center mt-2">
-                <div class="col-12">
-                    <div class="w-100" >
-                        <input data-toggle="tooltip" title="Disabled tooltip" type="range" min="1" max="100" value="50" class="slider animated flipInX" id="myRange">
-                        <small class="text-muted">Slide to change the answer</small>
-                    </div>
-                </div>
-            </div>
-            <a href="" class="btn btn-link float-right mt-2 hide skip">skip</a>
+                <a href="#" class="btn btn-link mt-2 hide skip">skip</a>
             </div>
         </div>
     </div>
@@ -122,28 +75,6 @@ if the first two statements are true, the third statement is:</p>
 {% block scripts %}
 <script src="{% static 'js/slider.js' %}"></script>
 <script src="{% static 'js/ajax-setup.js' %}"></script>
+<script src="{% static 'js/questions.js' %}"></script>
 
-<script>
-    $.post("{% url 'questionnaire:questionFetch' %}", function (data) {
-            console.log(data.answers);
-            for (answer in JSON.stringify(data.answers)) {
-                console.log(data.answers[answer]);
-                
-            }
-        })
-            .done(function () {
-                console.log("second success");
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("finished");
-            });
-        $(document).ready(() => {
-            setTimeout(() => {
-                $('.skip').addClass(' show animated fadeIn');
-            }, 5000);
-        });
-</script>
 {% endblock %}
