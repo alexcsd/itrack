@@ -67,13 +67,23 @@ def question_fetch(request,pk = None):
                 'Interaction':0,
                 'Mechanical':0,
                 'Communication':0,
-                'Judment':0,
+                'Judgment':0,
                 'Attention':0,
                 'Thinking':0,
             },
             'current_question_id':next_question.pk
         }
     else:
+        import logging
+        logger = logging.getLogger(__name__)
+        eight_skills_vector=request.session['questions_meta']['skills_vector']
+        #alias so its shorter
+        esv=eight_skills_vector
+        #now its a list
+        esv=[esv[i] for i in esv]
+
+        logger.error(esv)
+
         answer = Answer.objects.get(pk=pk)
         #logic = logic + answer.weight/logic.question.count
         request.session['questions_meta']['skills_vector'][answer.Question.Skill.title] += answer.weight/answer.Question.Skill.question_set.count()
@@ -88,3 +98,29 @@ def question_fetch(request,pk = None):
         }
     request.session.save()
     return JsonResponse(ctx)
+
+
+def skills_mapping(request):
+    import logging
+    from numpy import array,matmul
+    logger = logging.getLogger(__name__)
+    eight_skills_vector=request.session['questions_meta']['skills_vector']
+    #alias so its shorter
+    esv=eight_skills_vector
+    #now its a list
+    esv=[esv[i] for i in esv]
+    esv=array(esv)
+    d={     'logic':[1,0,1,0,1,1,0,0,1,0,1],
+            'management':[0,1,0,1,0,0,0,0,0,0,1],
+            'interaction':[0,0,0,1,0,0,1,1,0,1,0],
+            'mechanical':[0,1,0,0,1,0,1,0,0,0,1],
+            'communication':[0,0,0,1,0,1,1,1,1,1,0],
+            'judgement':[0,0,0,0,1,0,0,0,0,0,0],
+            'attention':[1,0,1,1,1,0,1,0,0,1,0],
+            'thinking':[1,1,1,0,0,1,0,0,0,0,1]
+            }
+    eight_to_abet=[d[i] for i in d]
+    eight_to_abet=array(eight_to_abet)
+    abet_result=list(matmul(esv,eight_to_abet))
+    logger.error(abet_result)
+    return HttpResponse(' '.join([str(int(i)) for i in abet_result]))

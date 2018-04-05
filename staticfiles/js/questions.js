@@ -1,10 +1,11 @@
 function fetchQuestion(data) {
+    
     // console.log(data);
     //data.answers is a string
     json_string = data.answers;
     //you convert the string into an object with the function JSON.parse
     console.log(data);
-    
+
     var question = data.question;
     var type = data.type;
     var answers = JSON.parse(json_string);
@@ -14,6 +15,7 @@ function fetchQuestion(data) {
     if (type == 'MCQ') {
         $('#mcq .answers').html('');
         $('#mcq .question').text(question);
+        //$('#tf').hide()
         for (answer in answers) {
             $('#mcq .answers').append(
                 '<a class="btn btn-outline-secondary animated bounceIn answer   " pk="' + answers[answer].pk + '">'
@@ -41,6 +43,8 @@ function fetchQuestion(data) {
                 );
         }
         $('#tf').addClass(' show  flipInY');
+        //$('#mcq').hide()
+
     }
     setTimeout(() => {
         $('.skip').addClass(' show animated fadeIn');
@@ -50,7 +54,7 @@ function fetchQuestion(data) {
         if(!clicked){
 
             console.log($(this).attr('pk'));
-            
+
             var pk = $(this).attr('pk');
             // $('#tf,#mcq').animateCss('flipOutY', function () {
                 $.post("/questionfetch/"+pk, fetchQuestion);

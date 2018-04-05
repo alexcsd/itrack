@@ -4,6 +4,8 @@ from . import views
 app_name = 'questionnaire'
 urlpatterns = [
     path('',  views.welcome, name='welcome'),
+    #map prints the skill vector
+    path('map',  views.skills_mapping, name='map'),
     path('result',  views.result, name='result'),
     path('about',  views.welcome, name='about'),
     path('questionnaire',  views.index, name='index'),
