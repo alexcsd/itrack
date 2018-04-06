@@ -17,7 +17,7 @@ function fetchQuestion(data) {
         $('#mcq .question').text(question);
         for (answer in answers) {
             $('#mcq .answers').append(
-                '<a class="btn btn-outline-secondary animated bounceIn answer   " pk="' + answers[answer].pk + '">'
+                '<a class="btn btn-outline-primary animated bounceIn answer   " pk="' + answers[answer].pk + '">'
                 + '<input type="radio" name="options" id="option1" autocomplete="off" checked> ' + answers[answer].fields.body + ''
                 + '</a>'
             );
