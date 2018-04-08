@@ -79,6 +79,8 @@ def question_fetch(request,pk = None):
     return JsonResponse(ctx)
 
 def skills_mapping(request):
+    from random import randint
+    from watch_course.models import Course
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
     #alias so its shorter
@@ -97,6 +99,46 @@ def skills_mapping(request):
             }
     eight_to_abet=[d[i] for i in d]
     eight_to_abet=array(eight_to_abet)
+    esv=esv.reshape(1,8)
     abet_result=list(matmul(esv,eight_to_abet))
-    logger.error(abet_result)
-    return HttpResponse(' '.join([str(int(i)) for i in abet_result]))
+    #logger.error(abet_result)
+    logger.error(esv.shape)
+    logger.error(esv)
+    logger.error(eight_to_abet.shape)
+    logger.error(eight_to_abet)
+    #producing random vectors till our great team provides a correct matrix
+    #1st row: Algorithms
+    #2nd row: AI
+    #3rd row: Intro to CS
+    #4th row: Advanced data structures
+    subject_matrix=[
+    [randint(0,1) for i in range(11)],
+    [randint(0,1) for i in range(11)],
+    [randint(0,1) for i in range(11)],
+    [randint(0,1) for i in range(11)],
+    ]
+    subject_names={
+    0:'Algorithms',
+    1:'AI',
+    2:'Intro to CS',
+    3:'Advanced data structures'
+    }
+    subject_matrix=array(subject_matrix)
+    #shape (n*11)
+    #to be consistent, we'll transpose
+    subject_matrix=subject_matrix.T
+    subject_results_vector=matmul(abet_result,subject_matrix)
+    #alias
+    srv=subject_results_vector
+    srv=srv.tolist()[0]
+
+    max_index=srv.index(max(srv))
+    logger.error(srv)
+    recommended_course=subject_names[max_index]
+    course=Course.objects.get(title=recommended_course)
+    logger.error(course)
+    request.user.profile.course=course
+    request.user.profile.course_index=0
+    request.user.profile.save()
+
+    return HttpResponse(' '.join([str(i) for i in abet_result])+' '+' '.join([str(i) for i in srv])+' ;'+recommended_course)
