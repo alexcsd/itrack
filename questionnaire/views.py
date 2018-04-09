@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Skill, Question, Answer
 from django.core import serializers
-from .utils import matrix
 from django.views.decorators.csrf import csrf_protect
 import logging
 from numpy import array,matmul
@@ -31,10 +30,6 @@ def welcome(request):
 
 def index(request):
     return render(request, 'questionnaire/index.html', context)
-
-def result(request):
-    return render(request, 'questionnaire/result.html', context)
-
 
 def question(request):
     return render(request, 'questionnaire/questions.html', context)
@@ -78,7 +73,7 @@ def question_fetch(request,pk = None):
     request.session.save()
     return JsonResponse(ctx)
 
-def skills_mapping(request):
+def result(request):
     from random import randint
     from watch_course.models import Course
     logger = logging.getLogger(__name__)
@@ -117,12 +112,12 @@ def skills_mapping(request):
     [randint(0,1) for i in range(11)],
     [randint(0,1) for i in range(11)],
     ]
-    subject_names={
-    0:'Algorithms',
-    1:'AI',
-    2:'Intro to CS',
-    3:'Advanced data structures'
-    }
+    # subject_names={
+    # 0:'Algorithms',
+    # 1:'AI',
+    # 2:'Intro to CS',
+    # 3:'Advanced data structures'
+    # }
     subject_matrix=array(subject_matrix)
     #shape (n*11)
     #to be consistent, we'll transpose
@@ -131,14 +126,21 @@ def skills_mapping(request):
     #alias
     srv=subject_results_vector
     srv=srv.tolist()[0]
+    courses={
+    'Algorithms':srv[0],
+    'AI':srv[1],
+    'Intro to CS':srv[2],
+    'Advanced data structures':srv[3]
+    }
+    context.update({'courses':courses, 'result':srv})
+    # max_index=srv.index(max(srv))
+    # logger.error(srv)
+    # recommended_course=subject_names[max_index]
+    # course=Course.objects.get(title=recommended_course)
+    # logger.error(course)
+    # request.user.profile.course=course
+    # request.user.profile.course_index=0
+    # request.user.profile.save()
 
-    max_index=srv.index(max(srv))
-    logger.error(srv)
-    recommended_course=subject_names[max_index]
-    course=Course.objects.get(title=recommended_course)
-    logger.error(course)
-    request.user.profile.course=course
-    request.user.profile.course_index=0
-    request.user.profile.save()
-
-    return HttpResponse(' '.join([str(i) for i in abet_result])+' '+' '.join([str(i) for i in srv])+' ;'+recommended_course)
+    # return HttpResponse(' '.join([str(i) for i in abet_result])+' '+' '.join([str(i) for i in srv])+' ;'+recommended_course)
+    return render(request, 'questionnaire/result.html', context)

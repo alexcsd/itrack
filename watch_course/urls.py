@@ -3,5 +3,6 @@ from . import views
 
 app_name = 'watch_course'
 urlpatterns = [
-    path('',  views.watch, name='watch'),
+    path('<int:index>/',  views.watch, name='watch'),
+    # path('/startcourse',  views.startcourse, name='startcourse'),
     ]

@@ -1,7 +1,7 @@
 
 function fetchQuestion(data) {
     if(data.response){
-        return window.location = '/map';
+        return window.location = '/result';
     }
     $(".skip").unbind("click");
     // console.log(data);
