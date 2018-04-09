@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Skill, Question, Answer
+from watch_course.models import Course
 from django.core import serializers
 from django.views.decorators.csrf import csrf_protect
 import logging
@@ -83,16 +84,17 @@ def result(request):
     #now its a list
     esv=[esv[i] for i in esv]
     esv=array(esv)
-    d={     'logic':[1,0,1,0,1,1,0,0,1,0,1],
-            'management':[0,1,0,1,0,0,0,0,0,0,1],
-            'interaction':[0,0,0,1,0,0,1,1,0,1,0],
-            'mechanical':[0,1,0,0,1,0,1,0,0,0,1],
-            'communication':[0,0,0,1,0,1,1,1,1,1,0],
-            'judgement':[0,0,0,0,1,0,0,0,0,0,0],
-            'attention':[1,0,1,1,1,0,1,0,0,1,0],
-            'thinking':[1,1,1,0,0,1,0,0,0,0,1]
-            }
-    eight_to_abet=[d[i] for i in d]
+    skills_matrix={     
+        'logic':[1,0,1,0,1,1,0,0,1,0,1],
+        'management':[0,1,0,1,0,0,0,0,0,0,1],
+        'interaction':[0,0,0,1,0,0,1,1,0,1,0],
+        'mechanical':[0,1,0,0,1,0,1,0,0,0,1],
+        'communication':[0,0,0,1,0,1,1,1,1,1,0],
+        'judgement':[0,0,0,0,1,0,0,0,0,0,0],
+        'attention':[1,0,1,1,1,0,1,0,0,1,0],
+        'thinking':[1,1,1,0,0,1,0,0,0,0,1]
+    }
+    eight_to_abet=[skills_matrix[i] for i in skills_matrix]
     eight_to_abet=array(eight_to_abet)
     esv=esv.reshape(1,8)
     abet_result=list(matmul(esv,eight_to_abet))
@@ -107,17 +109,37 @@ def result(request):
     #3rd row: Intro to CS
     #4th row: Advanced data structures
     subject_matrix=[
-    [randint(0,1) for i in range(11)],
-    [randint(0,1) for i in range(11)],
-    [randint(0,1) for i in range(11)],
-    [randint(0,1) for i in range(11)],
+        [1,1,1,0,1,0,0,0,1,1,1],
+        [1,1,1,0,1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0],
+        [randint(0,1) for i in range(11)],
+        [1,1,1,1,1,1,0,1,1,1,0],
+        [randint(0,1) for i in range(11)],
+        [1,0,1,1,1,0,0,1,1,0,1],
+        [randint(0,1) for i in range(11)],
+        [randint(0,1) for i in range(11)],
+        [randint(0,1) for i in range(11)],
+        [randint(0,1) for i in range(11)],
+        [1,1,1,0,1,0,0,0,1,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,0,1,0,0,0,1,0,1]
     ]
-    # subject_names={
-    # 0:'Algorithms',
-    # 1:'AI',
-    # 2:'Intro to CS',
-    # 3:'Advanced data structures'
-    # }
+    subject_names=[
+        'Artificial Intellegence',
+        'Advanced datastructures',
+        'Intro to algorithms',
+        'Advanced algorithms',
+        'Computer Security',
+        'Mathematics for computer science',
+        'Computer Graphics',
+        'Neural network',
+        'Data analysis',
+        'Data visualization',
+        'Intro to CS and programming',
+        'Operating Systems',
+        'Machine Learning',
+        'Database systems',
+    ]
     subject_matrix=array(subject_matrix)
     #shape (n*11)
     #to be consistent, we'll transpose
@@ -126,13 +148,10 @@ def result(request):
     #alias
     srv=subject_results_vector
     srv=srv.tolist()[0]
-    courses={
-    'Algorithms':srv[0],
-    'AI':srv[1],
-    'Intro to CS':srv[2],
-    'Advanced data structures':srv[3]
-    }
-    context.update({'courses':courses, 'result':srv})
+    top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
+    context.update({'courses':top_three_courses})
+    #delete session
+
     # max_index=srv.index(max(srv))
     # logger.error(srv)
     # recommended_course=subject_names[max_index]
@@ -144,3 +163,21 @@ def result(request):
 
     # return HttpResponse(' '.join([str(i) for i in abet_result])+' '+' '.join([str(i) for i in srv])+' ;'+recommended_course)
     return render(request, 'questionnaire/result.html', context)
+
+def start_course(request, course):
+    if request.user.is_authenticated:
+        if request.user.profile.course:
+            return redirect('watch_course:watch',index=1)
+        else:
+            #uncomment the following line after finishing our database
+            # _course = Course.objects.get(title=course) 
+            _course = Course.objects.get(title='Advanced data structures')
+            request.user.profile.course = _course
+            request.user.profile.course_index=0
+            request.user.profile.save()
+            return redirect('watch_course:watch',index=1)
+    # else:
+    #save course in a session
+    #redirect to registration page and save the course while registration
+
+

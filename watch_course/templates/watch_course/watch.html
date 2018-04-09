@@ -1,24 +1,26 @@
 {%extends "watch_course/layouts/base.html"%} 
 {% block content %}
 <div class="container">
-    <legend class="text-light">Course title</legend>
+    <legend class="text-light">Course title: {{course_title}}</legend>
     <div class="row">
         <div class="col-md-8">
             <!-- current video -->
-            <iframe  class="w-100" height="500" src="https://www.youtube-nocookie.com/embed/vMmyUdOYMhM?rel=0&modestbranding=1&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media"
+            <iframe  class="w-100" height="500" src="https://www.youtube-nocookie.com/embed/{{current_link}}?rel=0&modestbranding=1&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media"
             allowfullscreen ></iframe>
         </div>
         <div class="col-md-4">
             <div class="list-group">
                 <legend class="list-group-item text-dark">Content list</legend>
                 <!-- for loop for the videos list , current video with active class -->
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Cras justo odio
+                
+                {% for link in links %}
+                    
+                <a href="/watch/{{forloop.counter}}" class="list-group-item list-group-item-action {% if link == current_link %} active{% endif %}">
+                    {{forloop.counter}}
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in
-                </a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus
-                </a>
+                {% empty %}
+                    
+                {% endfor %}
             </div>
         </div>
     </div>

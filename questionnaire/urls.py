@@ -9,5 +9,6 @@ urlpatterns = [
     path('questions',  views.question, name='questions'),
     path('questionfetch',  views.question_fetch, name='questionFetch'),
     path('questionfetch/<int:pk>',  views.question_fetch, name='questionFetch'),
+    path('startcourse/<str:course>',  views.start_course, name='startcourse'),
     path('abet',  views.abet, name='abet'),
 ]
