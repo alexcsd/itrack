@@ -169,9 +169,7 @@ def start_course(request, course):
         if request.user.profile.course:
             return redirect('watch_course:watch',index=1)
         else:
-            #uncomment the following line after finishing our database
-            # _course = Course.objects.get(title=course) 
-            _course = Course.objects.get(title='Advanced data structures')
+            _course = Course.objects.get(title=course)
             request.user.profile.course = _course
             request.user.profile.course_index=0
             request.user.profile.save()
