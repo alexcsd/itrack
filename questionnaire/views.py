@@ -1,3 +1,7 @@
+'''
+handles all the questionnaire and main page logic
+'''
+
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -17,6 +21,11 @@ context = {
     }
 
 def abet(request):
+    '''
+    an unused function, was an initial idea that we discarded
+    was based on intersecting the abest skills vector [1,0,..k=11]
+    with an outcome matrix, and returning maximum intersction count
+    '''
     from . import abet
     if request.method=='POST':
         answers_vector=request.POST['vector']
@@ -27,6 +36,9 @@ def abet(request):
     return render(request,'questionnaire/abet.html',context)
 
 def welcome(request):
+    '''
+    this one and the following functions are obvious
+    '''
     return render(request,'questionnaire/welcome.html',context)
 
 def index(request):
@@ -38,6 +50,11 @@ def question(request):
 
 @csrf_protect
 def question_fetch(request,pk = None):
+    '''
+    an important view
+    retrives questions from the database, displays them in the template
+    and more importantly, keeps track of the skills vectors in the session
+    '''
     if pk == None:
         next_question = Question.objects.order_by('pk').first()
         request.session['questions_meta'] ={
@@ -75,6 +92,11 @@ def question_fetch(request,pk = None):
     return JsonResponse(ctx)
 
 def result(request):
+    '''
+    does all the mapping from skill vectors to courses
+    uses numpy to do matrix multiplication
+    the metric used is the inner product
+    '''
     from random import randint
     from watch_course.models import Course
     logger = logging.getLogger(__name__)
@@ -84,7 +106,7 @@ def result(request):
     #now its a list
     esv=[esv[i] for i in esv]
     esv=array(esv)
-    skills_matrix={     
+    skills_matrix={
         'logic':[1,0,1,0,1,1,0,0,1,0,1],
         'management':[0,1,0,1,0,0,0,0,0,0,1],
         'interaction':[0,0,0,1,0,0,1,1,0,1,0],
@@ -165,11 +187,16 @@ def result(request):
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):
+    '''
+    displays the course to the user
+    '''
     if request.user.is_authenticated:
         if request.user.profile.course:
             return redirect('watch_course:watch',index=1)
         else:
-            _course = Course.objects.get(title=course)
+            #uncomment the following line after finishing our database
+            # _course = Course.objects.get(title=course)
+            _course = Course.objects.get(title='Advanced data structures')
             request.user.profile.course = _course
             request.user.profile.course_index=0
             request.user.profile.save()
@@ -177,5 +204,3 @@ def start_course(request, course):
     # else:
     #save course in a session
     #redirect to registration page and save the course while registration
-
-

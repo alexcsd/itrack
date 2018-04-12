@@ -1,3 +1,6 @@
+'''
+this module contains all the urls for the whole project
+'''
 
 from django.contrib import admin
 from django.urls import path,include
