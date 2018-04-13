@@ -120,16 +120,6 @@ def result(request):
     eight_to_abet=array(eight_to_abet)
     esv=esv.reshape(1,8)
     abet_result=list(matmul(esv,eight_to_abet))
-    #logger.error(abet_result)
-    logger.error(esv.shape)
-    logger.error(esv)
-    logger.error(eight_to_abet.shape)
-    logger.error(eight_to_abet)
-    #producing random vectors till our great team provides a correct matrix
-    #1st row: Algorithms
-    #2nd row: AI
-    #3rd row: Intro to CS
-    #4th row: Advanced data structures
     subject_matrix=[
         [1,1,1,0,1,0,0,0,1,1,1],
         [1,1,1,0,1,0,0,0,0,0,1],
@@ -173,34 +163,27 @@ def result(request):
     top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-
-    # max_index=srv.index(max(srv))
-    # logger.error(srv)
-    # recommended_course=subject_names[max_index]
-    # course=Course.objects.get(title=recommended_course)
-    # logger.error(course)
-    # request.user.profile.course=course
-    # request.user.profile.course_index=0
-    # request.user.profile.save()
-
-    # return HttpResponse(' '.join([str(i) for i in abet_result])+' '+' '.join([str(i) for i in srv])+' ;'+recommended_course)
+    del request.session['questions_meta']
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):
     '''
-    displays the course to the user
+    Saves and displays the course to the user
     '''
     if request.user.is_authenticated:
         if request.user.profile.course:
             return redirect('watch_course:watch',index=1)
         else:
             #uncomment the following line after finishing our database
-            # _course = Course.objects.get(title=course)
-            _course = Course.objects.get(title='Advanced data structures')
+            _course = Course.objects.get(title=course)
+            # _course = Course.objects.get(title='Advanced data structures')
             request.user.profile.course = _course
             request.user.profile.course_index=0
             request.user.profile.save()
             return redirect('watch_course:watch',index=1)
-    # else:
+    else:
     #save course in a session
+    request.session['result'] = course
+    request.session.save()
     #redirect to registration page and save the course while registration
+    return redirect('user:signup')

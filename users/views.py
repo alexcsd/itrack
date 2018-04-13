@@ -28,6 +28,12 @@ class SignupView(FormView):
 	form_class=UserCreationForm
 	def form_valid(self,form):
 		user=form.save()
+		if request.session['course']:
+			_course = Course.objects.get(title=request.session['course'])
+			self.request.user.profile.course = _course
+            self.request.user.profile.course_index=0
+            self.request.user.profile.save()
+			del self.request.session['course']
 		login(self.request,user,backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('user:profile',user.username)
 
