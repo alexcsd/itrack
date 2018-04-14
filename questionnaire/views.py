@@ -181,7 +181,6 @@ def start_course(request, course):
             request.user.profile.course_index=0
             request.user.profile.save()
             return redirect('watch_course:watch',index=1)
-    else:
     #save course in a session
     request.session['result'] = course
     request.session.save()
