@@ -11,6 +11,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_protect
 import logging
 from numpy import array,matmul
+from random import randint
 
 # Create your views here.
 register_form = UserCreationForm()
@@ -45,6 +46,9 @@ def index(request):
     return render(request, 'questionnaire/index.html', context)
 
 def question(request):
+    if request.user.is_authenticated:
+        global context
+        context.update({'hasACourse':True if request.user.profile.course else False})
     return render(request, 'questionnaire/questions.html', context)
 
 
@@ -97,8 +101,8 @@ def result(request):
     uses numpy to do matrix multiplication
     the metric used is the inner product
     '''
-    from random import randint
-    from watch_course.models import Course
+    if 'questions_meta' not in request.session:
+        return redirect('/')
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
     #alias so its shorter
@@ -163,7 +167,7 @@ def result(request):
     top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-    del request.session['questions_meta']
+    # del request.session['questions_meta'] #commented for testing purposes
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):
@@ -172,8 +176,6 @@ def start_course(request, course):
     '''
     if request.user.is_authenticated:
         if request.user.profile.course:
-            return redirect('watch_course:watch',index=1)
-        else:
             #uncomment the following line after finishing our database
             _course = Course.objects.get(title=course)
             # _course = Course.objects.get(title='Advanced data structures')

@@ -14,7 +14,7 @@
             
             {% for course in courses %}
                 
-            <a href="{% url 'questionnaire:startcourse' course.1 %}" class="btn btn-info">{{course.1}}</a>
+            <a href="{% url 'questionnaire:startcourse' course.1 %}" class="btn btn-info btn-block">{{course.1}}</a>
             {% endfor %}
                 
         </div>

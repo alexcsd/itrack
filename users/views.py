@@ -6,29 +6,24 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.models import User
 from django.views.generic.edit import FormView
+from watch_course.models import Course
 
-login_form=AuthenticationForm()
-register_form=UserCreationForm()
-context = {
-    'register_form': register_form,
-    'login_form': login_form
-    }
 
 def current_profile(request):
 	''' 
 	checks if the user is logged in, if he's logged in it redirects to his profile,
 	if he's not logged in it redirects to the main page
 	'''
-	if request.user.is_authenticated:
-		return redirect('user:profile',request.user.username)
-	return redirect('questionnaire:welcome')
+	if not request.user.is_authenticated:
+		return redirect('questionnaire:welcome')
+	
+	return redirect('user:profile',request.user.username)
 
 def profile_view(request, username):
 	'''
 	updates the template context with the username, and displays his profile
 	'''
-	global context
-	context.update({'user_profile':username})
+	context = {'user_profile':username,'current_course':request.user.profile.course.title}
 	return render(request,'users/profile/profile.html', context)
 
 class SignupView(FormView):
@@ -39,13 +34,13 @@ class SignupView(FormView):
 	form_class=UserCreationForm
 	def form_valid(self,form):
 		user=form.save()
-		if request.session['course']:
-			_course = Course.objects.get(title=request.session['course'])
+		login(self.request,user,backend='django.contrib.auth.backends.ModelBackend')
+		if 'result' in self.request.session:
+			_course = Course.objects.get(title=self.request.session['result'])
 			self.request.user.profile.course = _course
 			self.request.user.profile.course_index=0
 			self.request.user.profile.save()
-			del self.request.session['course']
-		login(self.request,user,backend='django.contrib.auth.backends.ModelBackend')
+			del self.request.session['result']
 		return redirect('user:profile',user.username)
 
 class LoginView(FormView):

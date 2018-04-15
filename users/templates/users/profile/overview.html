@@ -5,9 +5,9 @@
                 <i class="fas fa-road fa-5x col-4"></i>
                 <div class="col-8">
                     <h5>Underway course</h5>
-                    <h6>Course title</h6>
+                    <h6>{{current_course}}</h6>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0"
+                        <div class="progress-bar bg-success" role="progressbar" style="width: '{{request.user.profile.course_index}}%'" aria-valuenow="{{request.user.profile.course_index}}" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
                 </div>
@@ -15,11 +15,11 @@
         </a>
     </div>
     <div class="col-6">
-        <a href="#" class="card bg-danger text-light">
+        <a href="{% url 'questionnaire:questions' %}" class="card bg-danger text-light">
             <div class="card-body row">
                 <i class="fas fa-redo-alt fa-5x col-4"></i>
                 <div class="col-8">
-                    <h5>retake questionnaire</h5>
+                    <h5>Retake questionnaire</h5>
                 </div>
             </div>
         </a>

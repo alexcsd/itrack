@@ -1,0 +1,215 @@
+[33mcommit 0190d7d715f6cc604d446f1e0e64a86d8960ee94[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sat Apr 14 20:23:54 2018 +0200
+
+    slight identation errors
+
+[33mcommit 5e93e8345ff1acc71cede97f08080d715eb78b63[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Fri Apr 13 11:56:51 2018 +0200
+
+    more docstrings
+
+[33mcommit 3218ac9cc22d691b5ca8bd94d3edd6487fd8e23f[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Fri Apr 13 12:35:32 2018 +0200
+
+    handle after questionnaire registration
+
+[33mcommit 2c034b5b066997de103aa4dfacd27aa9ad5fb862[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Thu Apr 12 22:20:54 2018 +0200
+
+    adding docstrings
+
+[33mcommit 7fd04b4e0de930d35c88cbeb83cf79db37c5138c[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Apr 11 18:44:35 2018 +0200
+
+    seeding database with courses
+
+[33mcommit 76438cc43c6a0278590958afc947feea97fba365[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Tue Apr 10 01:50:26 2018 +0200
+
+    Now we can watch our course
+
+[33mcommit a99e7003c18dc9b4cf1bc4298bc3fa0e715fc73e[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Mon Apr 9 15:54:04 2018 +0200
+
+    requirements file
+
+[33mcommit 6c4ccfdc1ded2a5a1827840f407b343120da73be[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Mon Apr 9 15:32:18 2018 +0200
+
+    requirements file
+
+[33mcommit 14805c6eef67f95a8e5cea98bb4e9ce62ab5217c[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Sun Apr 8 23:50:37 2018 +0200
+
+    course mapping done
+
+[33mcommit 9d374cb4820724862e3b31f0d3c07590633c1060[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Fri Apr 6 21:26:16 2018 +0200
+
+    questionnaire visualization
+
+[33mcommit 7333bb8b5a67c0dc56467ccc50484571c49c9743[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Fri Apr 6 21:21:52 2018 +0200
+
+    questionnaire visualization
+
+[33mcommit 7e0a4492c75e4fd7aee23e161280d3e983423a59[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Sun Apr 1 16:31:31 2018 +0200
+
+    added watch app
+
+[33mcommit 2120d39c1716770c520a3ea5a7b5628e4b38df6d[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Mar 21 13:24:09 2018 +0200
+
+    questions view init
+
+[33mcommit d5f0ed8627d424749550947b513abde3b6bab436[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Sun Mar 18 23:10:12 2018 +0200
+
+    Populating DB with Q&A
+
+[33mcommit 345b3ea207cb4f4173e5b01e0f388b22ed1ad307[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sun Mar 18 15:38:22 2018 +0200
+
+    new questions (skills) step one database model
+
+[33mcommit 3bc51574b24d8b155559ba700cc6240ffea9168c[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Fri Feb 16 08:58:59 2018 +0200
+
+    ABET questionnaire structure
+
+[33mcommit 3f569aae19c34a174e02d78e30405a5314163619[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Sun Feb 11 00:25:19 2018 +0200
+
+    normal signup/login multiple backends bug fix
+
+[33mcommit 90657fffb965d4291a2be248adc3ac91e720c71f[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sun Feb 11 01:54:49 2018 +0200
+
+    google plus login
+
+[33mcommit fac9c53ab1003227e0576c680c6ea4507452aecd[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sun Feb 11 01:54:46 2018 +0200
+
+    google plus login
+
+[33mcommit 7ecd858e3bb8a3e324ef9a6927a0ae1ec082ee01[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sat Feb 10 23:49:07 2018 +0200
+
+    Auth separate pages
+
+[33mcommit 0fa69c96d540281f842e714a668a6b8ac14c6d37[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Fri Feb 9 14:26:39 2018 +0200
+
+    Some arrangements
+
+[33mcommit ab339e2ae06a6c23ed74237dfe8c18172580a2f4[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sat Jan 27 12:36:19 2018 +0200
+
+    Slight modifications in forms and adding some comments in style.css
+
+[33mcommit cf9356846998eafe060723df0a0b1fa2d0385acd[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Sat Jan 27 09:25:31 2018 +0200
+
+    questionnaire back and front
+
+[33mcommit 6a8f8c3f9f7791c7542cd3a5d772d64fec66f0a4[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Fri Jan 26 15:38:00 2018 +0200
+
+    authentication 0.2
+
+[33mcommit 13fe9887c49af29f8999b392cbedc53e0526d5ec[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Fri Jan 26 15:33:28 2018 +0200
+
+    authentication 0.2
+
+[33mcommit 013daac208785640623e492f19ec8b6b436b85f0[m
+Author: prgmlu <gmelkabany@gmail.com>
+Date:   Fri Jan 26 15:31:47 2018 +0200
+
+    authentication 0.2
+
+[33mcommit ba2449bbb7703f139cbf41e17b2043e77fd54d50[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Thu Jan 25 17:35:12 2018 +0200
+
+    Templates Base template and welcome page update
+
+[33mcommit c2a123713d90776e4a92d4626ccf3456283afaa6[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Jan 24 23:13:49 2018 +0200
+
+    Sign in and Sign up forms design
+
+[33mcommit 4d1f3d38600f822ede2ce18c5dc32dfe39dfe726[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Jan 24 15:14:49 2018 +0200
+
+    css slight change
+
+[33mcommit 26f363e8e00f08876dd9995d09f4f1068a1ddfbe[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Jan 24 14:36:12 2018 +0200
+
+    edit images sizes and quality
+
+[33mcommit 3a52d3bff916fa69b7b149bb99f8ee961284ab29[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Jan 24 13:55:36 2018 +0200
+
+    welcome page and static files
+
+[33mcommit 1d2b2f858871569296db5c36072cec15bdc1ec33[m
+Author: Mostafa <gmelkabany@gmail.com>
+Date:   Wed Jan 24 15:02:50 2018 +0200
+
+    Auth
+
+[33mcommit 0c7e0bf5cddd69760cd09fc682d843fa8fd88f27[m
+Author: Mostafa <gmelkabany@gmail.com>
+Date:   Wed Jan 24 09:03:31 2018 +0200
+
+    Auth
+
+[33mcommit 0d97e0badbb232e1b22450070f318a65703c2243[m
+Author: alexcsd <mohamedshabaan.sci2016@alexu.edu.eg>
+Date:   Wed Dec 20 19:12:25 2017 +0200
+
+    Questionaire app backend 0001
+
+[33mcommit eb838c65679d19a9184e987e31f107655c39a1d8[m
+Author: Mohamed Shaaban <16676467+alexcsd@users.noreply.github.com>
+Date:   Wed Dec 20 19:09:42 2017 +0200
+
+    Create README.md
+
+[33mcommit afddaf72bf6f724bc5d857dffcd455b7e647e36f[m
+Author: Mohamed Shaaban <16676467+alexcsd@users.noreply.github.com>
+Date:   Wed Dec 20 19:09:33 2017 +0200
+
+    Initial commit
