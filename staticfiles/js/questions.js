@@ -22,7 +22,7 @@ function fetchQuestion(data) {
                 + '</a>'
             );
         }
-        $('#mcq').slideDown('slow');
+        $('#mcq').fadeIn('fast');
     }
     if (type == 'TF') {
         $('#tf .answers').html('');
@@ -48,7 +48,7 @@ function fetchQuestion(data) {
     }, 5000);
     $('.answer').one('click', function () {
         var pk = $(this).attr('pk');
-        $('#tf,#mcq').slideUp('slow'); 
+        $('#tf,#mcq').fadeOut('fast'); 
         clearTimeout(timeout);
         $('.skip').removeClass('show animated fadeIn');
         setTimeout(() => {
