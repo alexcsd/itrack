@@ -1,8 +1,8 @@
 {% extends "questionnaire/layouts/base.html" %} 
 {% block content %}
 <div class="w-100 d-sm-flex justify-content-center">
-    <div class="col-sm-8 col-md-6">
-        <div class="card">
+    <div class="row">
+        <div class="card col-sm-8 col-md-6">
             <div class="card-cody p-2">
             <canvas id="myChart" width="100" height="100"></canvas>
             </div>
@@ -10,7 +10,8 @@
                 <h6 class="text-dark">You are reliable to take these 3 courses as you are interested in them and have a good knowledge to proceed</h6>
             </div>
         </div>
-        <div class="p-2">
+        <div class="p-2 col-sm-4 col-md-6">
+            <small class="text-light text-center">Select the most excited course for you :</small>
             
             {% for course in courses %}
                 
@@ -18,7 +19,6 @@
             {% endfor %}
                 
         </div>
-        <small class="text-light text-center">Select the most excited course for you</small>
     </div>
 </div>
         
@@ -26,16 +26,13 @@
 {% endblock %}
 {% block scripts %} 
 
-<script>
+<script type="text/javascript">
     var data = [];
     var labels = [];
     {% for course in courses %} 
     data.push(Math.round(100*parseFloat('{{course.0}}'))/100)
     labels.push('{{course.1}}')
     {% endfor %}
-</script>
-
-<script type="text/javascript">
     var ctx = document.getElementById("myChart").getContext("2d");
     var myBarChart = new Chart(ctx, {
             type: 'horizontalBar',

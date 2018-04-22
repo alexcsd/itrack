@@ -1,7 +1,17 @@
 {%extends "watch_course/layouts/base.html"%} 
 {% block content %}
+
+    
 <div class="container">
-    <legend class="text-light">Course title: {{course_title}}</legend>
+    <div class="card">
+        <div class="card-body">
+ {% if links|length == 1 %} 
+         <p>Unfortunately we couldn't track your progress as there is no playlist for <span class="text-success capitalize">{{course_title}}</span> at our database so we recommmend you the following course</p>
+         <a href="{{current_link}}" class="btn btn-dark" target="_blank">Start  {{course_title}}</a>
+     
+ {% else %}
+ 
+    <legend class="text-dark capitalize">Course title: {{course_title}}</legend>
     <div class="row">
         <div class="col-md-8">
             <!-- current video -->
@@ -24,6 +34,9 @@
             </div>
         </div>
     </div>
+ {% endif %}
+</div>
+</div>
 </div>
 
 </iframe>

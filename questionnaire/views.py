@@ -79,7 +79,7 @@ def question_fetch(request,pk = None):
             answer = Answer.objects.get(pk=pk)
             #logic = logic answer.weight/logic.question.count
             request.session['questions_meta']['skills_vector'][answer.Question.Skill.title] += answer.weight/answer.Question.Skill.question_set.count()
-        #get next object
+        #get next question object
         try:
             next_question = Question.objects.all().filter(pk__gt=request.session['questions_meta']['current_question_id']).order_by('pk')[0:1]
             next_question = Question.objects.get(pk=next_question[0].pk)
@@ -128,33 +128,61 @@ def result(request):
         [1,1,1,0,1,0,0,0,1,1,1],
         [1,1,1,0,1,0,0,0,0,0,1],
         [1,0,0,0,0,0,0,0,0,0,0],
-        [randint(0,1) for i in range(11)],
         [1,1,1,1,1,1,0,1,1,1,0],
-        [randint(0,1) for i in range(11)],
         [1,0,1,1,1,0,0,1,1,0,1],
-        [randint(0,1) for i in range(11)],
-        [randint(0,1) for i in range(11)],
-        [randint(0,1) for i in range(11)],
-        [randint(0,1) for i in range(11)],
         [1,1,1,0,1,0,0,0,1,0,1],
         [1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,0,1,0,0,0,1,0,1]
+        [1,1,1,0,1,0,0,0,1,0,1],
+        #[1,1,1,0,1,0,0,0,1,0,1],
+        #[1,1,1,0,1,0,0,0,1,0,1],
+        [1,1,1,1,1,1,1,1,1,1,0],
+        [1,1,1,0,1,0,0,0,1,0,1],
+        [1,1,1,0,1,0,0,0,1,0,1],
+        [0,1,1,1,1,0,1,0,0,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,0],
+        [1,1,1,0,0,0,0,0,0,1,0],
+        [1,1,1,1,1,1,1,1,1,1,0],
+        [1,1,1,0,1,0,0,0,1,0,1],
+        [1,1,1,0,1,0,0,0,1,0,1],
+        #[1,1,1,0,1,1,0,0,1,0,1],
+        #[1,0,1,0,0,0,0,0,0,1,1],
+        #[1,0,1,0,1,0,0,0,1,0,1],
+        #[1,0,1,0,1,0,0,0,0,0,1],
+        #[1,1,1,0,1,0,0,0,0,0,1],
+        [1,0,1,0,1,0,0,0,0,0,1],
+        [1,0,0,0,1,0,0,0,0,0,1],
+        #[1,0,0,0,1,0,0,0,0,0,1]
     ]
     subject_names=[
         'Artificial Intellegence',
         'Advanced datastructures',
         'Intro to algorithms',
-        'Advanced algorithms',
         'Computer Security',
-        'Mathematics for computer science',
         'Computer Graphics',
-        'Neural network',
-        'Data analysis',
-        'Data visualization',
-        'Intro to CS and programming',
         'Operating Systems',
         'Machine Learning',
         'Database systems',
+        #'Computer Design and Organization',
+        #'Advanced Logic Design',
+        'Software for Embedded Systems',
+        'Introduction to Computer Communication Networks',
+        'Computer Vision',
+        'Advanced Internet and Web Services',
+        'Introduction to HCI',
+        'Introduction to Theory of Computation',
+        'Computational Biology',
+        'Software Engineering',
+        'Introduction to Compiler Construction',
+        'Hardware Design and Implementation',
+        #'The Hardware/Software Interface',
+        #'Introduction to Data Management',
+        #'Programming Languages',
+        #'Systems Programming',
+        #'Data Structures and Parallelism',
+        'Software Design and Implementation',
+        'Foundations of Computing',
+        #'Computer Programming'
     ]
     subject_matrix=array(subject_matrix)
     #shape (n*11)
@@ -175,7 +203,7 @@ def start_course(request, course):
     Saves and displays the course to the user
     '''
     if request.user.is_authenticated:
-        if request.user.profile.course:
+        if request.user.profile:
             #uncomment the following line after finishing our database
             _course = Course.objects.get(title=course)
             # _course = Course.objects.get(title='Advanced data structures')

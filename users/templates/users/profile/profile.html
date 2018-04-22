@@ -4,11 +4,11 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-3 pr-3">
+		<div class="col-md-3 pr-3  mb-2">
 			<div class="card">
 				<div class="card-body">
 					<img src="{% static 'img/sampleavatar.png' %}" alt="avatar" class="w-100 img-responsvive">
-					<h4 class="text-center text-muted">{{user.username}}</h4>
+					<h4 class="text-center text-muted capitalize">{{user.username}}</h4>
 					<ul class="nav nav-pills flex-column">
 						<li class="nav-item animated bounceIn">
 							<a class="nav-link active" data-toggle="tab" href="#profile">
@@ -22,17 +22,31 @@
 								Courses
 							</a>
 						</li> -->
-						<li class="nav-item animated bounceInDown">
+						<li class="nav-item animated bounceInDown" data-toggle="collapse" data-target="#settingtabs">
 							<a class="nav-link" data-toggle="tab" href="#settings">
 								<i class="fas fa-sliders-h"></i>
 								Settings
 							</a>
 						</li>
+						<div id="settingtabs" class="collapse">
+							<div class=" nav-pills nav w-100" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+								<a class="nav-link w-100 bg-light text-dark mt-1 active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+								 aria-controls="v-pills-home" aria-selected="true">
+									<i class="far fa-user"></i>
+									profile setting
+								</a>
+								<a class="nav-link w-100 bg-light text-dark mt-1" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+								 aria-controls="v-pills-profile" aria-selected="false">
+									<i class="fas fa-lock"></i>
+									security setting
+								</a>
+							</div>
+						</div>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="col-9  pl-3">
+		<div class="col-md-9  pl-3  mb-2">
 			<div class="card">
 				<div class="card-body ">
 					<div id="myTabContent" class="tab-content">

@@ -23,7 +23,7 @@ def profile_view(request, username):
 	'''
 	updates the template context with the username, and displays his profile
 	'''
-	context = {'user_profile':username,'current_course':request.user.profile.course.title}
+	context = {'user_profile':username,'current_course':request.user.profile.course}
 	return render(request,'users/profile/profile.html', context)
 
 class SignupView(FormView):

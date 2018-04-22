@@ -19,7 +19,7 @@ class Question(models.Model):
 class Answer(models.Model):
     Question = models.ForeignKey(Question, on_delete=models.CASCADE)
     body = models.TextField()
-    weight = models.IntegerField()
+    weight = models.FloatField()
     image = models.ImageField(blank=True)
     def __str__(self):
         return self.body

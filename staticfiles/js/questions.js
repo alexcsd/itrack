@@ -17,7 +17,7 @@ function fetchQuestion(data) {
         $('#mcq .question').text(question);
         for (answer in answers) {
             $('#mcq .answers').append(
-                '<a class="btn btn-outline-primary animated bounceIn answer   " pk="' + answers[answer].pk + '">'
+                '<a class="btn btn-outline-primary animated fadeIn answer   " pk="' + answers[answer].pk + '">'
                 + '<input type="radio" name="options" id="option1" autocomplete="off" checked> ' + answers[answer].fields.body + ''
                 + '</a>'
             );
@@ -31,13 +31,13 @@ function fetchQuestion(data) {
             if (answers[answer].fields.body == 'True')
                 $('#tf .answers').append(
                     '<div class="col-6">' +
-                    '<a href="#" class="btn btn-outline-info btn-circle btn-xl animated bounceIn answer" pk="' + answers[answer].pk + '">True</a>' +
+                    '<a href="#" class="btn btn-outline-info btn-circle btn-xl animated fadeIn answer" pk="' + answers[answer].pk + '">True</a>' +
                     '</div>'
                 );
             if (answers[answer].fields.body == 'False')
                 $('#tf .answers').append(
                     '<div class="col-6">' +
-                    '<a href="#" class="btn btn-outline-danger btn-circle btn-xl animated bounceIn answer" pk="' + answers[answer].pk + '">False</a>' +
+                    '<a href="#" class="btn btn-outline-danger btn-circle btn-xl animated fadeIn answer" pk="' + answers[answer].pk + '">False</a>' +
                     '</div>'
                 );
         }
@@ -45,7 +45,7 @@ function fetchQuestion(data) {
     }
     var timeout = setTimeout(() => {
         $('.skip').addClass(' show');
-    }, 5000);
+    }, 2000);
     $('.answer').one('click', function () {
         var pk = $(this).attr('pk');
         $('#tf,#mcq').fadeOut('fast'); 
@@ -60,7 +60,7 @@ function fetchQuestion(data) {
 $(document).ready(function() {
     $('.start').one('click', function () {
        
-        $('#start').animateCss('flipOutY', function () {
+        $('#start').animateCss('flipOutX', function () {
             $('#start').addClass(' display-none');
             $.post("/questionfetch", fetchQuestion);
         });

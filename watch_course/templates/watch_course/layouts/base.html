@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap4.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> {% block styles %} {% endblock %}
+    <style>
+        body {
+            background: none;
+            background-color: rgb(243, 243, 243);
+        }
+    </style>
 </head>
 
 <body>
@@ -18,7 +24,7 @@
 
 
 
-    <nav class="navbar navbar-expand-lg  navbar-trans bg-trans ">
+    <nav class="navbar navbar-expand-lg  navbar-trans bg-primary ">
         <a class="navbar-brand" href="{% url 'questionnaire:welcome' %}">
             <img src="{% static 'img/logo.png' %}" width="150px;" alt="itrack-logo">
         </a>
@@ -33,7 +39,7 @@
                     <a class="nav-link smoothscroll" href="{% url 'questionnaire:welcome' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link smoothscroll" href="{% url 'questionnaire:about' %}">About</a>
+                    <a class="nav-link smoothscroll" href="{% url 'questionnaire:welcome' %}">About</a>
                 </li>
                 {% if user.is_authenticated %}
 
@@ -51,6 +57,7 @@
             </ul>
         </div>
     </nav>
+    <br>
     {% block content %}
      {% endblock %}
     <footer class="text-center">
