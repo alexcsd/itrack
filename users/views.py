@@ -10,13 +10,13 @@ from watch_course.models import Course
 
 
 def current_profile(request):
-	''' 
+	'''
 	checks if the user is logged in, if he's logged in it redirects to his profile,
 	if he's not logged in it redirects to the main page
 	'''
 	if not request.user.is_authenticated:
 		return redirect('questionnaire:welcome')
-	
+
 	return redirect('user:profile',request.user.username)
 
 def profile_view(request, username):
@@ -63,3 +63,5 @@ def logout_view(request):
     '''
 	logout(request)
 	return redirect('questionnaire:welcome')
+def setting(request):
+	pass

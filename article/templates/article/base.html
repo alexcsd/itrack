@@ -1,0 +1,41 @@
+{% load static from staticfiles %}
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'css/blog-post.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+  <title>new article</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+        <li>
+          <form class="logout-link" action="{% url 'user:logout' %}" method="post">
+            {% csrf_token%}
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+        <li>
+          <a href="{% url 'article:create' %}">Create Article</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'user:login' %}">Login</a>
+        </li>
+        <li>
+          <a href="{% url 'user:signup' %}">Signup</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+  {% block content%} {% endblock%}
+</body>
+
+</html>

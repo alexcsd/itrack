@@ -7,9 +7,9 @@ from watch_course.models import Course
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     bio=models.TextField(max_length=500,blank=True)
-    img_src=models.TextField()
-    course= models.ForeignKey(Course, on_delete=models.CASCADE,null=True)
-    course_index= models.IntegerField(null=True)
+    img_src= models.ImageField(default='sampleavatar.png',blank=True)
+    course= models.ForeignKey(Course, on_delete=models.CASCADE,null=True,blank=True)
+    course_index= models.IntegerField(default=1)
     def __str__(self):
         return self.user.username
 

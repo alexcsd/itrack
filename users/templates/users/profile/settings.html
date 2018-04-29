@@ -1,58 +1,59 @@
 {% load static %}
 <div class="row">
-   
-    <div class="col-sm-10 col-md-10 tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <form class="form-horizontal" method="post" enctype="multipart/form-data" @submit.prevent="onSubmit">
-                <!-- user setting -->
-                <!-- profile picture -->
-                <div class="parent">
-                    <img class="image1 rounded" src="{% static 'img/sampleavatar.png' %}" />
-                    <label for="image_choose" class="image2 fas fa-camera fa-4x"></label>
-                    <input onchange="imageChanged()" style="display:none" type="file" name="" id="image_choose">
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <!-- name -->
-                <div class="form-group">
-                    <label class="form-control-label" for="inputDanger1">Username</label>
-                    <input value="{{ request.user.username }}" readonly class="form-control" type="text">
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="inputDanger1">Fullname</label>
-                    <input value="{{ request.user.name }}" class="form-control" type="text">
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <!-- short bio -->
-                <div class="form-group">
-                    <label class="form-control-label" for="inputDanger1">Bio</label>
-                    <textarea value="{{ request.user.bio }}" class="form-control" rows="3"></textarea>
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <button type="submit" class="btn btn-primary float-right">
+
+  <div class="col-sm-10 col-md-10 tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'user:setting' %}">
+        {% csrf_token %}
+        <!-- user setting -->
+        <!-- profile picture -->
+        <div class="parent">
+          <img class="image1 rounded" src="{{user.profile.img_src.url}}" />
+          <label for="image_choose" class="image2 fas fa-camera fa-4x"></label>
+          <input onchange="imageChanged()" style="display:none" type="file" name="" id="image_choose">
+          <div class="invalid-feedback"></div>
+        </div>
+        <!-- name -->
+        <div class="form-group">
+          <label class="form-control-label" for="inputDanger1">Username</label>
+          <input value="{{ request.user.username }}" readonly class="form-control" type="text">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="inputDanger1">Fullname</label>
+          <input value="{{ request.user.name }}" class="form-control" type="text">
+          <div class="invalid-feedback"></div>
+        </div>
+        <!-- short bio -->
+        <div class="form-group">
+          <label class="form-control-label" for="inputDanger1">Bio</label>
+          <textarea value="{{ request.user.bio }}" class="form-control" rows="3"></textarea>
+          <div class="invalid-feedback"></div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right">
                     <!-- <i  class="fas fa-spinner fa-pulse"></i> -->
                     Save</button>
-            </form>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        <!-- security setting -->
+        <!-- email -->
+        <div class="form-group">
+          <label class="form-control-label" for="inputDanger1">Email address</label>
+          <input value="{{ request.user.email }}" class="form-control" type="email">
+          <div class="invalid-feedback"></div>
         </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <form class="form-horizontal" method="post" enctype="multipart/form-data" >
-                <!-- security setting -->
-                <!-- email -->
-                <div class="form-group">
-                    <label class="form-control-label" for="inputDanger1">Email address</label>
-                    <input value="{{ request.user.email }}" class="form-control" type="email">
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <!-- password -->
-                <div class="form-group">
-                    <label class="form-control-label" for="inputDanger1">Change password</label>
-                    <input  class="form-control" type="password">
-                    <div  class="invalid-feedback"></div>
-                </div>
-                <button type="submit" class="btn btn-success float-right">
+        <!-- password -->
+        <div class="form-group">
+          <label class="form-control-label" for="inputDanger1">Change password</label>
+          <input class="form-control" type="password">
+          <div class="invalid-feedback"></div>
+        </div>
+        <button type="submit" class="btn btn-success float-right">
                     <!-- <i  class="fas fa-spinner fa-pulse"></i> -->
                     Save</button>
-            </form>
-        </div>
+      </form>
     </div>
-    </div>
+  </div>
+</div>

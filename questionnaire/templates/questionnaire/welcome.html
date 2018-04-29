@@ -3,165 +3,169 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Welcome to iTrack </title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/bootstrap4.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Welcome to iTrack </title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
 </head>
 
 <body>
-    <div class="background">
-    <span id="top"></span>
-    {% if not user.is_authenticated %} {% include "users/layouts/forms.html" %} {% endif %}
+  <div class="background">
+    <span id="top"></span> {% if not user.is_authenticated %} {% include "users/layouts/forms.html" %} {% endif %}
 
 
 
 
     <nav class="navbar navbar-expand-lg  navbar-trans bg-trans fixed-top">
-        <a class="navbar-brand" href="{% url 'questionnaire:welcome' %}">
+      <a class="navbar-brand" href="{% url 'questionnaire:welcome' %}">
             <img src="{% static 'img/logo.png' %}" width="150px;" alt="itrack-logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto ">
-                <li class="nav-item active">
-                    <a class="nav-link smoothscroll" href="#top">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link smoothscroll" href="#about">About</a>
-                </li>
-                {% if user.is_authenticated %}
-        
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:profile' user.username %}">{{user.username}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
+      <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto ">
+          <li class="nav-item active">
+            <a class="nav-link smoothscroll" href="#top">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smoothscroll" href="#about">About</a>
+          </li>
+          {% if user.is_authenticated %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:profile' user.username %}">{{user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link formssh" href="{% url 'article:create' %}">Create Article</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'article:home' %}">Blog</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link formssh" href="{% url 'article:home' %}">Blog</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </nav>
 
-        <!-- content start Here -->
-        <div class="justify-content-center text-light " id="welcome">
-            <div class="text-center col-md-6">
-                <h1>Welcome to iTrack</h1>
-                <p class="mt-2 h5">The shortest way to determine your technical future.Don't waste time, and use our free service.. ..Now !</p>
-                <a href="{% url 'questionnaire:questions'  %}" class="btn btn-dblue animated bounceIn">Start Questionnaire</a>
-            </div>
-        </div>
-                <div class="text-center m-5">
-                    <a href="#about" class="down-btn text-center smoothscroll">↓</a>
-                </div>
-        <div id="about" class="justify-content-center text-dark ">
-            <div class="text-center col-md-6">
-                <h1>ABOUT iTrack</h1>
-                <br>
-                <p>We have noticed most of newcomers, undergraduates and even fresh graduates have problems about understanding
-                    what will they are studying or even how to improve themselves in what they have studied recently.
-                    <br>Here in iTrack project we aim to find their very favourite specialisation and recommendation for some tracks
-                    and paths to reach their perfection in this specialisation.</p>
-                <a href="Javascript:void(0)" class="text-dblue">Subscribe us to be the first to know about our new articles. </a>
-                <form class="">
-                    <input type="text" class="form-control text-center" placeholder="Email address">
-                    <button type="submit" class="btn btn-dblue mt-1">Subscribe Now</button>
-                </form>
-            </div>
-        </div>
+    <!-- content start Here -->
+    <div class="justify-content-center text-light " id="welcome">
+      <div class="text-center col-md-6">
+        <h1>Welcome to iTrack</h1>
+        <p class="mt-2 h5">The shortest way to determine your technical future.Don't waste time, and use our free service.. ..Now !</p>
+        <a href="{% url 'questionnaire:questions'  %}" class="btn btn-dblue animated bounceIn">Start Questionnaire</a>
+      </div>
+    </div>
+    <div class="text-center m-5">
+      <a href="#about" class="down-btn text-center smoothscroll">↓</a>
+    </div>
+    <div id="about" class="justify-content-center text-dark ">
+      <div class="text-center col-md-6">
+        <h1>ABOUT iTrack</h1>
+        <br>
+        <p>We have noticed most of newcomers, undergraduates and even fresh graduates have problems about understanding what will they are studying or even how to improve themselves in what they have studied recently.
+          <br>Here in iTrack project we aim to find their very favourite specialisation and recommendation for some tracks and paths to reach their perfection in this specialisation.</p>
+        <a href="Javascript:void(0)" class="text-dblue">Subscribe us to be the first to know about our new articles. </a>
+        <form class="">
+          <input type="text" class="form-control text-center" placeholder="Email address">
+          <button type="submit" class="btn btn-dblue mt-1">Subscribe Now</button>
+        </form>
+      </div>
+    </div>
 
 
     <footer class="text-center">
-        <span>&copy; iTrack
+      <span>&copy; iTrack
             <a href="#top" class="top-btn smoothscroll">↑</a>
         </span>
     </footer>
-</div>
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap4.min.js' %}"></script>
-     {% if login_form.errors %}
-    <script type="text/javascript">
-        // $('.forms').slideDown();
-        $('.forms').css('display', 'block');
-    </script> {% endif %} {% if register_form.errors %}
-    <script type="text/javascript">
-        // $('.forms').slideDown();
-        $('.forms').css('display', 'block');
+  </div>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap4.min.js' %}"></script>
+  {% if login_form.errors %}
+  <script type="text/javascript">
+    // $('.forms').slideDown();
+    $('.forms').css('display', 'block');
+  </script> {% endif %} {% if register_form.errors %}
+  <script type="text/javascript">
+    // $('.forms').slideDown();
+    $('.forms').css('display', 'block');
+    $('#register').css('display', 'block');
+    $('#login').css('display', 'none');
+    $('#forms-title').text('Sign up');
+  </script> {% endif %}
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var h = $(window).height() - $('nav').height();
+      var hn = $(window).height();
+      $('#welcome').css('min-height', hn + 'px');
+      $('#about').css('min-height', hn + 'px');
+      $(document).keydown(function(e) {
+        // ESCAPE key pressed
+        if (e.keyCode == 27) {
+          $('.forms').fadeOut();
+        }
+      });
+
+      //forms hide/show
+      $(".formssh").on('click', function() {
+        $('.forms').slideDown();
+      });
+      $(".close").on('click', function() {
+        $('.forms').fadeOut();
+      });
+      //switch sign in/up
+      $('#showsignup').on('click', function() {
         $('#register').css('display', 'block');
         $('#login').css('display', 'none');
         $('#forms-title').text('Sign up');
+      });
+      $('#showsignin').on('click', function() {
+        $('#register').css('display', 'none');
+        $('#login').css('display', 'block');
+        $('#forms-title').text('Sign in');
+      });
 
-    </script> {% endif %}
+      // Add smooth scrolling to all links
+      $("a.smoothscroll").on('click', function(event) {
 
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
 
+          // Store hash
+          var hash = this.hash;
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var h = $(window).height()-$('nav').height();
-            var hn = $(window).height();
-            $('#welcome').css('min-height',hn+'px');
-            $('#about').css('min-height',hn+'px');
-            $(document).keydown(function (e) {
-                // ESCAPE key pressed
-                if (e.keyCode == 27) {
-                    $('.forms').fadeOut();
-                }
-            });
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function() {
 
-            //forms hide/show
-            $(".formssh").on('click', function () {
-                $('.forms').slideDown();
-            });
-            $(".close").on('click', function () {
-                $('.forms').fadeOut();
-            });
-            //switch sign in/up
-            $('#showsignup').on('click', function () {
-                $('#register').css('display', 'block');
-                $('#login').css('display', 'none');
-                $('#forms-title').text('Sign up');
-            });
-            $('#showsignin').on('click', function () {
-                $('#register').css('display', 'none');
-                $('#login').css('display', 'block');
-                $('#forms-title').text('Sign in');
-            });
-
-            // Add smooth scrolling to all links
-            $("a.smoothscroll").on('click', function (event) {
-
-                // Make sure this.hash has a value before overriding default behavior
-                if (this.hash !== "") {
-                    // Prevent default anchor click behavior
-                    event.preventDefault();
-
-                    // Store hash
-                    var hash = this.hash;
-
-                    // Using jQuery's animate() method to add smooth page scroll
-                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 800, function () {
-
-                        // Add hash (#) to URL when done scrolling (default click behavior)
-                        window.location.hash = hash;
-                    });
-                } // End if
-            });
-        });
-    </script>
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+    });
+  </script>
 </body>
 
 </html>

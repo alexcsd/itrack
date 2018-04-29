@@ -1,0 +1,17 @@
+{% extends 'users\layouts\base.html' %} {% block content %}
+<div class="container">
+  <h1>article list</h1> {% for art in articles %}
+  <div class="card my-4">
+    <!--<h2><a href="{% url 'article:details' slug=art.slug  %}">{{ art.title }}</a></h2>-->
+    <h5 class="card-header">{{ art.title }}</h5>
+    <div class="card-body">
+      <p class="card-text">{{ art.snippet }}</p>
+      <p class="blockquote-footer">added by : {{ art.author.username }}</p>
+      <p class="blockquote-footer">{{ art.date }}</p>
+      <a href="{% url 'article:details' slug=art.slug  %}" class="btn btn-primary">Read more</a>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

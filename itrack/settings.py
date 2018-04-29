@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'users',
+    'article',
     'watch_course',
     'questionnaire',
     'social_django',
