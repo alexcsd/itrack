@@ -1,10 +1,9 @@
-{% extends "questionnaire/layouts/base.html" %} 
-{% block content %}
-<div class="w-100 d-sm-flex justify-content-center">
+{% extends "questionnaire/layouts/base.html" %} {% block content %}
+<div class="container w-100 d-sm-flex justify-content-center">
     <div class="row">
         <div class="card col-sm-8 col-md-6">
             <div class="card-cody p-2">
-            <canvas id="myChart" width="100" height="100"></canvas>
+                <canvas id="myChart" width="100" height="100"></canvas>
             </div>
             <div class="card-footer">
                 <h6 class="text-dark">You are reliable to take these 3 courses as you are interested in them and have a good knowledge to proceed</h6>
@@ -12,31 +11,30 @@
         </div>
         <div class="p-2 col-sm-4 col-md-6">
             <small class="text-light text-center">Select the most excited course for you :</small>
-            
+
             {% for course in courses %}
-                
+
             <a href="{% url 'questionnaire:startcourse' course.1 %}" class="btn btn-info btn-block">{{course.1}}</a>
             {% endfor %}
-                
+
         </div>
     </div>
 </div>
-        
 
-{% endblock %}
-{% block scripts %} 
+
+{% endblock %} {% block scripts %}
 
 <script type="text/javascript">
     var data = [];
     var labels = [];
-    {% for course in courses %} 
-    data.push(Math.round(100*parseFloat('{{course.0}}'))/100)
+    {% for course in courses %}
+    data.push(Math.round(100 * parseFloat('{{course.0}}')) / 100)
     labels.push('{{course.1}}')
     {% endfor %}
     var ctx = document.getElementById("myChart").getContext("2d");
     var myBarChart = new Chart(ctx, {
-            type: 'horizontalBar',
-             data: {
+        type: 'horizontalBar',
+        data: {
             labels: labels,
             datasets: [{
                 label: 'Score',
@@ -52,41 +50,19 @@
                 borderWidth: 1
             }]
         },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                }
-        }
-        });
-/*
-    var myChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Questionnaire result',
-                data: data,
-                backgroundColor:'rgba(46,204,113 ,.4)',
-                pointRadius:5
-            }]
-        },
         options: {
-            scale: {
-                ticks:{
-                    min: 0,
-                    max:Math.max(...data)+5
-                }
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
             }
         }
-    });*/
-</script>
-{% endblock %}
+    });
+</script> {% endblock %}

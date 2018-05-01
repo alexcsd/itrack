@@ -12,8 +12,8 @@
 					{%csrf_token%} {% for field in form %}
 					<div class="form-group mb-2">
 						<input class="form-control {% if field.errors %} is-invalid{% endif %}" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}"
-						 placeholder="{{field.label}}" type="{% if 'password' in field.id_for_label %}password{% else %}text{% endif %}" /> {% if field.errors %}
-						<div class="invalid-feedback">{{ field.errors }}</div>
+						 placeholder="{{field.label}}" {% if field.value %} value="{{field.value}}"{% endif %} type="{% if 'password' in field.id_for_label %}password{% else %}text{% endif %}" /> {% if field.errors %}
+						<div class="invalid-feedback" >{{ field.errors }}</div>
 						{% endif %}
 					</div>
 					{% endfor %}

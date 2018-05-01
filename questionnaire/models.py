@@ -11,6 +11,7 @@ class Skill(models.Model):
 class Question(models.Model):
     Skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     body = models.TextField()
+    body_ar = models.TextField()
     image = models.ImageField(blank=True)
     qtype = models.CharField(max_length=50) #TF & mcq  & meter/scale
     def __str__(self):
@@ -19,6 +20,7 @@ class Question(models.Model):
 class Answer(models.Model):
     Question = models.ForeignKey(Question, on_delete=models.CASCADE)
     body = models.TextField()
+    body_ar = models.TextField()
     weight = models.FloatField()
     image = models.ImageField(blank=True)
     def __str__(self):

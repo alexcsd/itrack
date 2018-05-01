@@ -1,12 +1,21 @@
 from django.shortcuts import render,redirect
 from .models import Article,Comment
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from . import forms
 
 # Create your views here.
+register_form = UserCreationForm()
+login_form = AuthenticationForm()
+context = {
+    'register_form': register_form,
+    'login_form': login_form
+    }
 def article(request):
     articles=Article.objects.all().order_by('date')
-    return render(request,'article/article.html',{'articles':articles})
+    global context
+    context.update({'articles':articles})
+    return render(request,'article/article.html', context)
 
 
 def details(request,slug):

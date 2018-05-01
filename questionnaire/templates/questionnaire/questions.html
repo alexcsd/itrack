@@ -2,6 +2,7 @@
 {% load static%}
 {% block title %} Questionnaire {% endblock %}
 {% block styles %}
+<link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'><link rel="stylesheet" href="{% static 'css/questions.css' %}">
 <link rel="stylesheet" href="{% static 'css/slider.css' %}">
 <style>
     .btn-circle {
@@ -70,13 +71,16 @@
     </div>
 </div>
 
-<div class=" pb-5 container ">
+    
+
+            
+<div class="h-100 pb-5 container ">
     <div class="col-md-8 offset-md-2">
         <div id="tf" class="card mb-2 mt-2 display-none">
             <div class="card-body ">
                 <p class="question"></p>
                 <div class="row answers text-center mt-2"></div>
-                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">skip</a>
+                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">Skip to next question</a>
             </div>
         </div>
         <div id="mcq" class="card mb-2 mt-2 display-none">
@@ -85,12 +89,14 @@
                 <div class="row justify-content-center text-center mt-2">
                     <div class="btn-group btn-group-vertical btn-group-toggle answers" data-toggle="buttons"></div>
                 </div>
-                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">skip</a>
+                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">Skip to next question</a>
+            </div>
+        <div class="m-2">
+                <span class="btn btn-info btn-circle btn-xl animated fadeIn counter">23</span>
             </div>
         </div>
     </div>
 </div>
-
 
 
 {% endblock %}

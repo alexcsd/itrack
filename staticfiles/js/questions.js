@@ -1,5 +1,6 @@
-
+var counter = 23;
 function fetchQuestion(data) {
+    
     if(data.response){
         return window.location = '/result';
     }
@@ -8,10 +9,10 @@ function fetchQuestion(data) {
     //data.answers is a string
     json_string = data.answers;
     //you convert the string into an object with the function JSON.parse
-    
     var question = data.question;
     var type = data.type;
     var answers = JSON.parse(json_string);
+    
     if (type == 'MCQ') {
         $('#mcq .answers').html('');
         $('#mcq .question').text(question);
@@ -45,10 +46,19 @@ function fetchQuestion(data) {
     }
     var timeout = setTimeout(() => {
         $('.skip').addClass(' show');
-    }, 2000);
+    }, 5500);
     $('.answer').one('click', function () {
+        counter--;
+        $('.counter').animateCss('rotateOut', function () {
+            $('.counter').text(counter);
+            $('.counter').removeClass(' animated rotateOut');
+            $('.counter').animateCss('rotateIn', function () {
+                $('.counter').removeClass(' animated rotateIn');
+                
+            });
+        });
         var pk = $(this).attr('pk');
-        $('#tf,#mcq').fadeOut('fast'); 
+        // $('#tf,#mcq').fadeOut('fast');
         clearTimeout(timeout);
         $('.skip').removeClass('show animated fadeIn');
         setTimeout(() => {
@@ -59,11 +69,10 @@ function fetchQuestion(data) {
 }
 $(document).ready(function() {
     $('.start').one('click', function () {
-       
         $('#start').animateCss('flipOutX', function () {
             $('#start').addClass(' display-none');
             $.post("/questionfetch", fetchQuestion);
         });
     });
-    
+
 })

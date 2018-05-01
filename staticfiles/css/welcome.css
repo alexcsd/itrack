@@ -141,7 +141,7 @@ button.bg-trans:hover {
 }
 
 .navbar-trans .navbar-toggler {
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 40, 40, 0.5);
     border-color: rgba(255, 255, 255, .1)
 }
 

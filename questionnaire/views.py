@@ -11,7 +11,9 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_protect
 import logging
 from numpy import array,matmul
+from numpy.linalg import norm
 from random import randint
+from .utils import subjectMatrix,subjectNames,skillsMatrix
 
 # Create your views here.
 register_form = UserCreationForm()
@@ -77,7 +79,6 @@ def question_fetch(request,pk = None):
     else:
         if pk != 0:
             answer = Answer.objects.get(pk=pk)
-            #logic = logic answer.weight/logic.question.count
             request.session['questions_meta']['skills_vector'][answer.Question.Skill.title] += answer.weight/answer.Question.Skill.question_set.count()
         #get next question object
         try:
@@ -105,85 +106,23 @@ def result(request):
         return redirect('/')
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
+    #eight_skills_vector=[randint(0,1) for i in range(8)] #for testing purposes
     #alias so its shorter
     esv=eight_skills_vector
     #now its a list
     esv=[esv[i] for i in esv]
     esv=array(esv)
-    skills_matrix={
-        'logic':[1,0,1,0,1,1,0,0,1,0,1],
-        'management':[0,1,0,1,0,0,0,0,0,0,1],
-        'interaction':[0,0,0,1,0,0,1,1,0,1,0],
-        'mechanical':[0,1,0,0,1,0,1,0,0,0,1],
-        'communication':[0,0,0,1,0,1,1,1,1,1,0],
-        'judgement':[0,0,0,0,1,0,0,0,0,0,0],
-        'attention':[1,0,1,1,1,0,1,0,0,1,0],
-        'thinking':[1,1,1,0,0,1,0,0,0,0,1]
-    }
+    skills_matrix= skillsMatrix()
     eight_to_abet=[skills_matrix[i] for i in skills_matrix]
     eight_to_abet=array(eight_to_abet)
     esv=esv.reshape(1,8)
-    abet_result=list(matmul(esv,eight_to_abet))
-    subject_matrix=[
-        [1,1,1,0,1,0,0,0,1,1,1],
-        [1,1,1,0,1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0],
-        [1,1,1,1,1,1,0,1,1,1,0],
-        [1,0,1,1,1,0,0,1,1,0,1],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        [1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        #[1,1,1,0,1,0,0,0,1,0,1],
-        #[1,1,1,0,1,0,0,0,1,0,1],
-        [1,1,1,1,1,1,1,1,1,1,0],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        [0,1,1,1,1,0,1,0,0,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,0,0,0,0,0],
-        [1,1,1,0,0,0,0,0,0,1,0],
-        [1,1,1,1,1,1,1,1,1,1,0],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        [1,1,1,0,1,0,0,0,1,0,1],
-        #[1,1,1,0,1,1,0,0,1,0,1],
-        #[1,0,1,0,0,0,0,0,0,1,1],
-        #[1,0,1,0,1,0,0,0,1,0,1],
-        #[1,0,1,0,1,0,0,0,0,0,1],
-        #[1,1,1,0,1,0,0,0,0,0,1],
-        [1,0,1,0,1,0,0,0,0,0,1],
-        [1,0,0,0,1,0,0,0,0,0,1],
-        #[1,0,0,0,1,0,0,0,0,0,1]
-    ]
-    subject_names=[
-        'Artificial Intellegence',
-        'Advanced datastructures',
-        'Intro to algorithms',
-        'Computer Security',
-        'Computer Graphics',
-        'Operating Systems',
-        'Machine Learning',
-        'Database systems',
-        #'Computer Design and Organization',
-        #'Advanced Logic Design',
-        'Software for Embedded Systems',
-        'Introduction to Computer Communication Networks',
-        'Computer Vision',
-        'Advanced Internet and Web Services',
-        'Introduction to HCI',
-        'Introduction to Theory of Computation',
-        'Computational Biology',
-        'Software Engineering',
-        'Introduction to Compiler Construction',
-        'Hardware Design and Implementation',
-        #'The Hardware/Software Interface',
-        #'Introduction to Data Management',
-        #'Programming Languages',
-        #'Systems Programming',
-        #'Data Structures and Parallelism',
-        'Software Design and Implementation',
-        'Foundations of Computing',
-        #'Computer Programming'
-    ]
+    abet_result=array(matmul(esv,eight_to_abet))
+    esv_norm = norm(esv)
+    matrix_norms = [norm(i) for i in eight_to_abet.T]
+    norms_mul = esv_norm * array(matrix_norms)
+    abet_result=abet_result/norms_mul
+    subject_matrix= subjectMatrix()
+    subject_names= subjectNames()
     subject_matrix=array(subject_matrix)
     #shape (n*11)
     #to be consistent, we'll transpose
@@ -192,10 +131,14 @@ def result(request):
     #alias
     srv=subject_results_vector
     srv=srv.tolist()[0]
+    srv_norm = norm(srv)
+    matrix_norms = [norm(i) for i in subject_matrix.T]
+    norms_mul = srv_norm * array(matrix_norms)
+    srv=srv/norms_mul
     top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-    # del request.session['questions_meta'] #commented for testing purposes
+    del request.session['questions_meta']
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):

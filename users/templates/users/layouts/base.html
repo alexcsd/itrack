@@ -39,32 +39,28 @@
         <li class="nav-item">
           <a class="nav-link smoothscroll" href="{% url 'questionnaire:welcome' %}">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'article:home' %}">Articles</a>
+        </li>
         {% if user.is_authenticated %}
 
+        <li class="nav-item">
+          <a class="nav-link formssh" href="{% url 'article:create' %}">Create Article</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'user:profile' user.username %}">{{user.username}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'article:home' %}">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link formssh" href="{% url 'article:create' %}">Create Article</a>
-        </li>
-        {% else %}
+        {% elif not request.path == '/users/signup/' and not request.path == '/users/login/'  %}
         <li class="nav-item">
           <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link formssh" href="Javascript:void(0)">Create Article</a>
         </li>
         {% endif %}
       </ul>
     </div>
   </nav>
-
   <br> {% block content %} {% endblock %}
 
   <footer class="text-center">
