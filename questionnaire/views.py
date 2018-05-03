@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 import logging
 from numpy import array,matmul
 from numpy.linalg import norm
-from random import randint
+from random import randint, uniform
 from .utils import subjectMatrix,subjectNames,skillsMatrix
 
 # Create your views here.
@@ -55,7 +55,7 @@ def question(request):
 
 
 @csrf_protect
-def question_fetch(request,pk = None):
+def question_fetch(request,lang='en',pk = None):
     '''
     an important view
     retrives questions from the database, displays them in the template
@@ -88,8 +88,12 @@ def question_fetch(request,pk = None):
         except IndexError:
             return JsonResponse({'response':'200 ok'})
         #calculate
+    if lang == 'en':
+        question = next_question.body
+    else:
+        question = next_question.body_ar
     ctx = {
-        'question':next_question.body,
+        'question':question,
         'answers':serializers.serialize('json',next_question.answer_set.all()),
         'type':next_question.qtype
         }
@@ -102,25 +106,32 @@ def result(request):
     uses numpy to do matrix multiplication
     the metric used is the inner product
     '''
-    if 'questions_meta' not in request.session:
-        return redirect('/')
-    logger = logging.getLogger(__name__)
-    eight_skills_vector=request.session['questions_meta']['skills_vector']
-    #eight_skills_vector=[randint(0,1) for i in range(8)] #for testing purposes
+    # if 'questions_meta' not in request.session:
+    #     return redirect('/')
+    # logger = logging.getLogger(__name__)
+    # eight_skills_vector=request.session['questions_meta']['skills_vector']
+    eight_skills_vector=[uniform(0,4) for i in range(8)] #for testing purposes
     #alias so its shorter
     esv=eight_skills_vector
     #now its a list
-    esv=[esv[i] for i in esv]
+    # esv=[esv[i] for i in esv]
+    esv=[esv[i] for i in range(8)]
     esv=array(esv)
     skills_matrix= skillsMatrix()
     eight_to_abet=[skills_matrix[i] for i in skills_matrix]
+
+
+    mat_1_count=[i.count(1) for i in (array(eight_to_abet).T).tolist()]#
     eight_to_abet=array(eight_to_abet)
     esv=esv.reshape(1,8)
+    abet_result=array(matmul(esv,eight_to_abet))/mat_1_count#
+
+
     abet_result=array(matmul(esv,eight_to_abet))
-    esv_norm = norm(esv)
-    matrix_norms = [norm(i) for i in eight_to_abet.T]
-    norms_mul = esv_norm * array(matrix_norms)
-    abet_result=abet_result/norms_mul
+    # esv_norm = norm(esv)
+    # matrix_norms = [norm(i) for i in eight_to_abet.T]
+    # norms_mul = esv_norm * array(matrix_norms)
+    # abet_result=abet_result/norms_mul
     subject_matrix= subjectMatrix()
     subject_names= subjectNames()
     subject_matrix=array(subject_matrix)
@@ -131,14 +142,18 @@ def result(request):
     #alias
     srv=subject_results_vector
     srv=srv.tolist()[0]
-    srv_norm = norm(srv)
-    matrix_norms = [norm(i) for i in subject_matrix.T]
-    norms_mul = srv_norm * array(matrix_norms)
-    srv=srv/norms_mul
+    #srv_norm = norm(srv)
+    matrix_1_count = [i.count(1) for i in (subject_matrix.T).tolist()]
+    #norms_mul = srv_norm * array(matrix_norms)
+
+    srv=srv/array(matrix_1_count)
+    # matrix_norms = [norm(i) for i in subject_matrix.T]
+    # norms_mul = srv_norm * array(matrix_norms)
+    # srv=srv/norms_mul
     top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-    del request.session['questions_meta']
+    # del request.session['questions_meta']
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):

@@ -49,6 +49,8 @@
 
 {% endblock %}
 {% block content %}
+<!-- Button to Open the Modal -->
+
 <div id="start" class="container pt-5 pb-5">
     <div class="h-100 w-100 d-flex justify-content-center align-items-center section-1">
     <div class="text-white col-md-8 ">
@@ -65,11 +67,36 @@
             </div>
             <div class="text-center">
                 <p>Try to be honest in your answers even if you don't know any answer .</p>
-                <a href="#"  class=" start btn btn-info animated bounce">Get Started</a>
+                <button type="button" class="btn btn-info animated rubberBand" data-toggle="modal" data-target="#getStartedModal">
+                  Get Started
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- The Modal -->
+<div class="modal fade animated pulse" id="getStartedModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body text-center">
+        <h2>Great!</h2>
+        <p>
+        You can choose from 2 language 
+        </p>
+        <small>Select your preferred language</small>
+        <hr>
+        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-danger btn-sm animated fadeIn counter start_ar">عربى</a>
+        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-sm animated fadeIn counter start_en">English</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+                <!-- <a href="#"  class=" start btn btn-info animated bounce">Get Started</a> -->
 
     
 

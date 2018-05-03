@@ -1,4 +1,5 @@
 var counter = 23;
+var lang = 'en';
 function fetchQuestion(data) {
     
     if(data.response){
@@ -17,6 +18,13 @@ function fetchQuestion(data) {
         $('#mcq .answers').html('');
         $('#mcq .question').text(question);
         for (answer in answers) {
+            if(lang == 'ar')
+            $('#mcq .answers').append(
+                '<a class="btn btn-outline-primary animated fadeIn answer   " pk="' + answers[answer].pk + '">'
+                + '<input type="radio" name="options" id="option1" autocomplete="off" checked> ' + answers[answer].fields.body_ar + ''
+                + '</a>'
+            );
+            if(lang == 'en')
             $('#mcq .answers').append(
                 '<a class="btn btn-outline-primary animated fadeIn answer   " pk="' + answers[answer].pk + '">'
                 + '<input type="radio" name="options" id="option1" autocomplete="off" checked> ' + answers[answer].fields.body + ''
@@ -53,7 +61,7 @@ function fetchQuestion(data) {
             $('.counter').text(counter);
             $('.counter').removeClass(' animated rotateOut');
             $('.counter').animateCss('rotateIn', function () {
-                $('.counter').removeClass(' animated rotateIn');
+            $('.counter').removeClass(' animated rotateIn');
                 
             });
         });
@@ -62,16 +70,23 @@ function fetchQuestion(data) {
         clearTimeout(timeout);
         $('.skip').removeClass('show animated fadeIn');
         setTimeout(() => {
-            $.post("/questionfetch/" + pk, fetchQuestion);
+            $.post("/questionfetch/"+lang +"/" + pk, fetchQuestion);
         }, 100);
     });
     return 1;
 }
 $(document).ready(function() {
-    $('.start').one('click', function () {
+    $('.start_ar').one('click', function () {
+        lang = 'ar';
         $('#start').animateCss('flipOutX', function () {
             $('#start').addClass(' display-none');
-            $.post("/questionfetch", fetchQuestion);
+            $('.question,.answer input').css('direction','rtl');
+            $.post("/questionfetch/"+lang, fetchQuestion);
+        });
+    });$('.start_en').one('click', function () {
+        $('#start').animateCss('flipOutX', function () {
+            $('#start').addClass(' display-none');
+            $.post("/questionfetch/"+lang, fetchQuestion);
         });
     });
 
