@@ -1,16 +1,50 @@
-{% extends 'users\layouts\base.html' %} {% block content %}
+{% extends 'users/layouts/base.html' %}
+{% block title %}Create article {% endblock %}
+ {% block content %}
+
 <div class="container">
-  <h2>create article</h2>
+<div class="col-sm-8 offset-sm-2">
+<div class="card">
+  <div class="card-header">
+
+  <h2>Create article</h2>
+  </div>
+  <div class="card-body">
+
   <form class="site-form" action="{% url 'article:create' %}" method="post" enctype="multipart/form-data">
-
-    {% csrf_token%} {% for field in form %}
-    <div class="form-group">
-      {{ field.label }} {{ field }}
+    {% csrf_token%}
+    <!-- title -->
+    <div class="form-group has-danger">
+      <label class="form-control-label" for="inputDanger1">{{form.title.label}}</label>
+      <input type="text" class="form-control {%if form.title.errors %} is-invalid {% endif %} " name="{{form.title.name}}" {%if form.title.value %} value="{{form.title.value}}" {% endif %} >
+      <div class="invalid-feedback">{{form.title.errors}}</div>
     </div>
-    {% endfor %}
+    <!-- body -->
+     <div class="form-group has-danger">
+      <label for="exampleTextarea">{{form.body.label}}</label> 
+      <textarea class="form-control {%if form.body.errors %} is-invalid {% endif %} " id="exampleTextarea" rows="3" name="{{form.body.name}}">{%if form.body.value %}{{form.body.value}} {% endif %}</textarea>
+      <div class="invalid-feedback">{{form.body.errors}}</div>
+    </div>
+    <div class="row">
+    <!-- slug -->
+    <div class="form-group col-sm-6 has-danger">
+      <label class="form-control-label" for="inputDanger1">{{form.slug.label}}</label>
+      <input type="text" value="wrong value" class="form-control {%if form.slug.errors %} is-invalid {% endif %} " name="{{form.slug.name}}" {%if form.slug.value %} value="{{form.slug.value}}" {% endif %} >
+      <div class="invalid-feedback">{{form.slug.errors}}</div>
+    </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- image -->
+    <div class="form-group col-sm-6">
+      <label for="exampleInputFile">{{form.thumb.label}}</label>
+      <input type="file" {%if form.thumb.value %} value="{{form.thumb.value}}" {% endif %}  class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="{{form.thumb.name}}">
+      <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
   </form>
 
+</div>
+</div>
 </div>
 {% endblock %}

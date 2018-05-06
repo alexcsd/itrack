@@ -22,6 +22,8 @@ def details(request,slug):
     article =Article.objects.get(slug=slug)
     comment =Comment.objects.filter(article=article)
     form = forms.CreateComment()
+    global context
+    context.update({'article':article,'comment':comment,'form':form})
     if request.method == 'POST':
         if request.user.is_authenticated :
             comment = forms.CreateComment(request.POST,request.FILES)
@@ -30,11 +32,11 @@ def details(request,slug):
             instance.article = article
             instance.save()
             comment = Comment.objects.filter(article=article)
-            return render(request, 'article/details.html', {'article': article, 'comment': comment, 'form': form})
+            return render(request, 'article/details.html', context)
         else:
             return redirect('user:signin')
     else:
-        return render(request,'article/details.html',{'article':article,'comment':comment,'form':form})
+        return render(request,'article/details.html',context)
 
 
 @login_required

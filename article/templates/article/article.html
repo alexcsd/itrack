@@ -1,6 +1,8 @@
-{% extends 'users/layouts/base.html' %} {% block content %}
+{% extends 'users/layouts/base.html' %} 
+{% block title %} Articles {% endblock %}
+{% block content %}
 <div class="container">
-  <h1 class="display-3">Articles list</h1> 
+  <h1 class="display-5">Articles list</h1> 
   {% for art in articles %}
   <div class="card my-4">
     <!--<h2><a href="{% url 'article:details' slug=art.slug  %}">{{ art.title }}</a></h2>-->

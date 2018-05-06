@@ -35,6 +35,9 @@
           <li class="nav-item">
             <a class="nav-link smoothscroll" href="#about">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'article:home' %}">Articles</a>
+          </li>
           {% if user.is_authenticated %}
 
           <li class="nav-item">
@@ -46,15 +49,9 @@
           <li class="nav-item">
             <a class="nav-link formssh" href="{% url 'article:create' %}">Create Article</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'article:home' %}">Blog</a>
-          </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link formssh" href="Javascript:void(0)">Sign in/Sign up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link formssh" href="{% url 'article:home' %}">Blog</a>
           </li>
           {% endif %}
         </ul>
@@ -78,11 +75,8 @@
         <br>
         <p>We have noticed most of newcomers, undergraduates and even fresh graduates have problems about understanding what will they are studying or even how to improve themselves in what they have studied recently.
           <br>Here in iTrack project we aim to find their very favourite specialisation and recommendation for some tracks and paths to reach their perfection in this specialisation.</p>
-        <a href="Javascript:void(0)" class="text-dblue">Subscribe us to be the first to know about our new articles. </a>
-        <form class="">
-          <input type="text" class="form-control text-center" placeholder="Email address">
-          <button type="submit" class="btn btn-dblue mt-1">Subscribe Now</button>
-        </form>
+        <a href="Javascript:void(0)" class="text-dblue">Register to get full functionalities. </a><br>
+          <button type="button" class="btn btn-dblue mt-1 formssh showsignup">Register Now</button>
       </div>
     </div>
 
@@ -131,7 +125,7 @@
         $('.forms').fadeOut();
       });
       //switch sign in/up
-      $('#showsignup').on('click', function() {
+      $('#showsignup,.showsignup').on('click', function() {
         $('#register').css('display', 'block');
         $('#login').css('display', 'none');
         $('#forms-title').text('Sign up');
