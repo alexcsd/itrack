@@ -23,9 +23,29 @@ def profile_view(request, username):
 	'''
 	updates the template context with the username, and displays his profile
 	'''
-	context = {'user_profile':username,'current_course':request.user.profile.course}
+	if not request.user.is_authenticated:
+		return redirect('questionnaire:welcome')
+	user = User.objects.get(username=username)
+	context = {'user_profile':request.user.username == username,'profile':user,'current_course':user.profile.course}
 	return render(request,'users/profile/profile.html', context)
+def change_profile(request):
+	user = request.user
+	user.first_name = request.POST.get('first_name')
+	user.last_name = request.POST.get('last_name')
+	profile = user.profile
+	profile.bio = request.POST.get('bio')
+	profile.save()
+	user.save()
+	return redirect('user:profile',user.username)
 
+def change_security(request):
+	user = request.user
+	user.email = request.POST.get('email')
+	if len(request.POST.get('password')) >6:
+		user.set_password(request.POST.get('password'))
+	user.save()
+	login(request,user,backend='django.contrib.auth.backends.ModelBackend')
+	return redirect('user:profile',user.username)
 class SignupView(FormView):
 	''' class-based view (Generic views)
 	handles the user registeration, and initializes the course counter to 0

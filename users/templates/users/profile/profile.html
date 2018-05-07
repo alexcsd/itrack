@@ -7,8 +7,8 @@
 		<div class="col-md-3 pr-3  mb-2">
 			<div class="card">
 				<div class="card-body">
-					<img src="{{user.profile.img_src.url}}" alt="avatar" class="w-100 img-responsvive">
-					<h4 class="text-center text-muted capitalize">{{user.username}}</h4>
+					<img src="{{profile.profile.img_src.url}}" alt="avatar" class="w-100 img-responsvive">
+					<h4 class="text-center text-muted capitalize">{% if profile.first_name%}{{profile.first_name}} {{profile.last_name}} {% else %} {{profile.username}}{% endif %}</h4>
 					<ul class="nav nav-pills flex-column">
 						<li class="nav-item animated bounceIn">
 							<a class="nav-link active" data-toggle="tab" href="#profile">
@@ -22,6 +22,9 @@
 								Courses
 							</a>
 						</li> -->
+						{% if user_profile %}
+						
+						
 						<li class="nav-item animated bounceInDown" data-toggle="collapse" data-target="#settingtabs">
 							<a class="nav-link" data-toggle="tab" href="#settings">
 								<i class="fas fa-sliders-h"></i>
@@ -40,6 +43,7 @@
 								</a>
 							</div>
 						</div>
+						 {% endif %}
 					</ul>
 				</div>
 			</div>

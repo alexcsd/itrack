@@ -1,19 +1,16 @@
 <div class="row">
     {% if current_course %}
     <div class="col-md-6 mb-2">
-        
-            
-        
-        <a href="/watch/1" class="card bg-light text-dark">
+        <a href="/watch/{{request.user.profile.course_index}}" class="card bg-light text-dark">
             <div class="card-body row">
                 <i class="fas fa-road fa-5x col-4"></i>
                 <div class="col-8">
                     <h5>Underway course</h5>
                     <h6>{{current_course}}</h6>
-                    <div class="progress">
+                    {% comment %} <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: '{{request.user.profile.course_index}}%'" aria-valuenow="{{request.user.profile.course_index}}" aria-valuemin="0"
                         aria-valuemax="100"></div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </a>

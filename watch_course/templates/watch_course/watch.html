@@ -20,7 +20,22 @@
             allowfullscreen ></iframe>
         </div>
         <div class="col-md-4">
-            <div class="list-group">
+            {% if prev_index %}
+            <a href="/watch/{{prev_index}}" class="btn btn-info btn-lg "><i class="fas fa-step-backward"></i> Previous video</a>
+            <br>
+            {% endif %}
+            {% if next_index %}
+            
+            <a href="/watch/{{next_index}}" class="btn btn-primary btn-lg mt-3 mb-3"><i class="fas fa-step-forward"></i> Next video</a>
+            {% else %}
+            <a href="/finish/{{next_index}}" class="btn btn-success btn-lg mt-3 mb-3"><i class="fas fa-certificate"></i> Great! you have finished . .</a>
+
+            {% endif %}
+            <h5><i class="fas fa-life-ring"></i> Progress</h5>
+            <div class="progress mt-3 ">
+                <div class="progress-bar {% if not next_index %} bg-success {% endif %}" role="progressbar" style="width: {{progress}}%"></div>
+            </div>
+            {% comment %} <div class="list-group">
                 <legend class="list-group-item text-dark">Content list</legend>
                 <!-- for loop for the videos list , current video with active class -->
                 
@@ -32,7 +47,7 @@
                 {% empty %}
                     
                 {% endfor %}
-            </div>
+            </div> {% endcomment %}
         </div>
     </div>
  {% endif %}

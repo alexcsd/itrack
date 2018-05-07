@@ -32,7 +32,7 @@ def subjectMatrix():
 def subjectNames():
     return [
         'Artificial Intellegence',
-        'Advanced datastructures',
+        'Advanced data structures',
         'Intro to algorithms',
         'Computer Security',
         'Computer Graphics',

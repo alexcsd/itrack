@@ -106,11 +106,11 @@ def result(request):
     uses numpy to do matrix multiplication
     the metric used is the inner product
     '''
-    # if 'questions_meta' not in request.session:
-    #     return redirect('/')
-    # logger = logging.getLogger(__name__)
-    # eight_skills_vector=request.session['questions_meta']['skills_vector']
-    eight_skills_vector=[uniform(0,4) for i in range(8)] #for testing purposes
+    if 'questions_meta' not in request.session:
+        return redirect('/')
+    logger = logging.getLogger(__name__)
+    eight_skills_vector=request.session['questions_meta']['skills_vector']
+    # eight_skills_vector=[uniform(0,4) for i in range(8)] #uncomment for test purposes
     #alias so its shorter
     esv=eight_skills_vector
     #now its a list
@@ -153,7 +153,7 @@ def result(request):
     top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-    # del request.session['questions_meta']
+    del request.session['questions_meta'] #comment for test purposes
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):

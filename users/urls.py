@@ -11,4 +11,6 @@ path('logout/',views.logout_view,name="logout"),
 path('profile/',views.current_profile,name="cprofile"),
 path('profile/<slug:username>/',views.profile_view,name="profile"),
 path('profile/setting',views.setting,name="setting"),
+path('profile/changeprofile',views.change_profile,name="change_profile"),
+path('profile/changesecurity',views.change_security,name="change_security"),
 ]
