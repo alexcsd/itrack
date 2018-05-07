@@ -80,7 +80,8 @@ $(document).ready(function() {
         lang = 'ar';
         $('#start').animateCss('flipOutX', function () {
             $('#start').addClass(' display-none');
-            $('.question,.answer input').css('direction','rtl');
+            $('#mcq').addClass(' arabic');
+            $('.skip').text(' تخطى');
             $.post("/questionfetch/"+lang, fetchQuestion);
         });
     });$('.start_en').one('click', function () {

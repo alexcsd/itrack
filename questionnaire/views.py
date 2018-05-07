@@ -110,12 +110,15 @@ def result(request):
         return redirect('/')
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
-    # eight_skills_vector=[uniform(0,4) for i in range(8)] #uncomment for test purposes
+    logger.warning(eight_skills_vector)
+    #eight_skills_vector=[uniform(0,4) for i in range(8)] #uncomment for test purposes
     #alias so its shorter
     esv=eight_skills_vector
     #now its a list
-    # esv=[esv[i] for i in esv]
-    esv=[esv[i] for i in range(8)]
+    esv=[esv[i] for i in esv]
+    #note: that's the correct syntax when we want the result normally from the skills vector from the session: esv=[esv[i] for i in esv]
+    #and this is the syntax when we randomize a vector for testing: esv=[esv[i] for i in range(8)]
+    #or this is simpler :  esv=[i for i in esv]
     esv=array(esv)
     skills_matrix= skillsMatrix()
     eight_to_abet=[skills_matrix[i] for i in skills_matrix]

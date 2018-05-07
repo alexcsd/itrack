@@ -3,6 +3,8 @@
 {% block title %} Questionnaire {% endblock %}
 {% block styles %}
 <link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="//www.fontstatic.com/f=DroidKufi-Regular" />
+
 <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 <link rel="stylesheet" href="{% static 'css/slider.css' %}">
 
@@ -47,7 +49,7 @@
         </p>
         <small>Select your preferred language</small>
         <hr>
-        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-danger btn-sm animated fadeIn counter start_ar">عربى</a>
+    <a href="javascript:void(0);" data-dismiss="modal" class="arabic btn btn-danger btn-sm animated fadeIn counter start_ar">عربى</a>
         <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-sm animated fadeIn counter start_en">English</a>
       </div>
 
@@ -74,7 +76,8 @@
                 <div class="row justify-content-center text-center mt-2">
                     <div class="btn-group btn-group-vertical btn-group-toggle answers" data-toggle="buttons"></div>
                 </div>
-                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">Skip to next question</a>
+                <a href="#" class="btn btn-link mt-2 hide skip answer animated fadeIn" pk="0">
+            <i class="fas fa-angle-double-right"></i> Skip to next question</a>
             </div>
         <div class="m-2">
                 <span class="btn btn-info btn-circle btn-xl animated fadeIn counter">23</span>

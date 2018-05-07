@@ -1,7 +1,6 @@
 .question{
 	font-size:25px;
 	text-align: center;
-	font-weight: bolder;
 }
 body{
 	min-height: 100%;
@@ -50,3 +49,7 @@ body{
    	display: block;
    	visibility: visible;
    }
+.arabic *,.arabic{
+	direction: rtl;
+	font-family: 'DroidKufi-Regular';
+}
