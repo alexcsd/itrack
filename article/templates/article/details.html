@@ -11,26 +11,31 @@
     <!-- Post Content Column -->
     <div class="col-lg-8">
 
+      <div class="card my-2">
+      <div class="card-header">
       <!-- Title -->
       <h1 class="mt-4">{{article.title}}</h1>
-
-      <hr>
-
+      
       <!-- Date/Time -->
-      <p>Posted on {{article.date}}</p>
+      <p>Posted on {{article.date}} by <i class="fas fa-user"></i> {{article.author.username}}</p>
 
-      <hr>
-
+    </div>
+    <div class="card-body">
       <!-- Preview Image -->
-      <img class="img-fluid rounded" src="{{article.thumb.url}}" alt="">
-
+      <img class="img-fluid rounded" src="{{article.thumb.url}}" alt="article-image-thumbnail">
 
       <!-- Post Content -->
-      <pre class="lead mt-3">{{article.body}}</pre>
-      <hr>
-          <h3><i class="far fa-comments"></i> Comments</h3>
-        <div class="card-body">
+      <pre class="lead mt-3 text-center">.  .  . Article body .  .  .</pre>
+      {% comment %} <pre class="lead mt-3">{{article.body}}</pre> {% endcomment %}
+      </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
 
+          <h3><i class="far fa-comments"></i> Comments</h3>
+        </div>
+        <div class="card-body">
+          
           <!-- Single Comment -->
           {% for com in comment %}
           <div class="media mb-4">
@@ -39,16 +44,13 @@
               <h5 class="mt-0">{{ com.author }}</h5> {{ com.text }}
             </div>
           </div>
-          <hr> 
           {% endfor %}
         </div>
       </div>
+    </div>
 
     <!-- Sidebar Widgets Column -->
-    <div class="col-md-4">
-      <br>
-      <br>
-      <br>
+    <div class="col-lg-4">
 
       <!-- Search Widget -->
       {% comment %} <div class="card my-4">
@@ -66,8 +68,10 @@
       {% if request.user.is_authenticated %}
       
       <!-- Comments Form -->
-      <div class="card my-4">
-        <h5 class="card-header">Leave a Comment:</h5>
+      <div class="card my-2">
+        <div class="card-header">  
+          <h5 >Leave a Comment:</h5>
+        </div>
         <div class="card-body">
           <form action="{% url 'article:details' slug=article.slug %}" method="post" enctype="multipart/form-data">
             <div class="form-group">

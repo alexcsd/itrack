@@ -106,8 +106,8 @@ def result(request):
     uses numpy to do matrix multiplication
     the metric used is the inner product
     '''
-    if 'questions_meta' not in request.session:
-        return redirect('/')
+    # if 'questions_meta' not in request.session:
+    #     return redirect('/')
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
     logger.warning(eight_skills_vector)
@@ -153,10 +153,10 @@ def result(request):
     # matrix_norms = [norm(i) for i in subject_matrix.T]
     # norms_mul = srv_norm * array(matrix_norms)
     # srv=srv/norms_mul
-    top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
+    top_three_courses = sorted(zip(srv, subject_names), reverse=True)
     context.update({'courses':top_three_courses})
     #delete session
-    del request.session['questions_meta'] #comment for test purposes
+    # del request.session['questions_meta'] #comment for test purposes
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):

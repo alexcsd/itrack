@@ -16,7 +16,7 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
 }
 
 footer {
@@ -31,6 +31,11 @@ footer {
     color: black;
 }
 
+pre { 
+    white-space: pre-wrap ;
+}
+
+​
 * {
     font-family: 'Raleway', sans-serif;
 }

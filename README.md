@@ -6,3 +6,5 @@
 ### Mohamed Shaaban
 ### Mostafa Mahmoud
 ### Amr Reda
+
+pip install -r /path/to/requirements.txt

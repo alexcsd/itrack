@@ -28,15 +28,25 @@ def profile_view(request, username):
 	user = User.objects.get(username=username)
 	context = {'user_profile':request.user.username == username,'profile':user,'current_course':user.profile.course}
 	return render(request,'users/profile/profile.html', context)
+
 def change_profile(request):
+	# from PIL import Image
+	# from django.core.files.images import ImageFile
+	# im = Image.open(request.FILES.get('img_src'))
+	# im = im.thumbnail((200,200), Image.ANTIALIAS)
+	# # im = im.convert('RGB')
+	# im = im.save('image.jpg')
+	# im = ImageFile(im)
 	user = request.user
 	user.first_name = request.POST.get('first_name')
 	user.last_name = request.POST.get('last_name')
 	profile = user.profile
 	profile.bio = request.POST.get('bio')
+	if request.FILES.get('img_src') not None:
+		profile.img_src = request.FILES.get('img_src')
 	profile.save()
 	user.save()
-	return redirect('user:profile',user.username)
+	return redirect('user:profile',request.user.username)
 
 def change_security(request):
 	user = request.user

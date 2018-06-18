@@ -78,14 +78,14 @@ function fetchQuestion(data) {
 $(document).ready(function() {
     $('.start_ar').one('click', function () {
         lang = 'ar';
-        $('#start').animateCss('flipOutX', function () {
+        $('#start').animateCss('bounceOut', function () {
             $('#start').addClass(' display-none');
             $('#mcq').addClass(' arabic');
             $('.skip').text(' تخطى');
             $.post("/questionfetch/"+lang, fetchQuestion);
         });
     });$('.start_en').one('click', function () {
-        $('#start').animateCss('flipOutX', function () {
+        $('#start').animateCss('bounceOut', function () {
             $('#start').addClass(' display-none');
             $.post("/questionfetch/"+lang, fetchQuestion);
         });

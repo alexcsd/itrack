@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{% block title %} iTrack {% endblock %}</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/bootstrap4.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -31,7 +32,7 @@
                     <a class="nav-link smoothscroll" href="{% url 'questionnaire:welcome' %}"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link smoothscroll" onclick="window.location.href='{% url 'questionnaire:welcome' %}#about'" href="javascript::void(0);" ><i class="far fa-question-circle"></i>About</a>
+                    <a class="nav-link smoothscroll" onclick="window.location.href='{% url 'questionnaire:welcome' %}#about';" href="javascript::void(0);" ><i class="far fa-question-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
           <a class="nav-link " href="{% url 'article:home' %}"><i class="fas fa-books"></i> Articles</a>
