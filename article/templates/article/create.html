@@ -15,21 +15,21 @@
     {% csrf_token%}
     <!-- title -->
     <div class="form-group has-danger">
-      <label class="form-control-label" for="inputDanger1">{{form.title.label}}</label>
-      <input type="text" class="form-control {%if form.title.errors %} is-invalid {% endif %} " name="{{form.title.name}}" {%if form.title.value %} value="{{form.title.value}}" {% endif %} >
+      <label class="form-control-label" for="title">{{form.title.label}}</label>
+      <input type="text" id="title" class="form-control {%if form.title.errors %} is-invalid {% endif %} " name="{{form.title.name}}" {%if form.title.value %} value="{{form.title.value}}" {% endif %} >
       <div class="invalid-feedback">{{form.title.errors}}</div>
     </div>
     <!-- body -->
      <div class="form-group has-danger">
-      <label for="exampleTextarea">{{form.body.label}}</label> 
-      <textarea class="form-control {%if form.body.errors %} is-invalid {% endif %} " id="exampleTextarea" rows="3" name="{{form.body.name}}">{%if form.body.value %}{{form.body.value}} {% endif %}</textarea>
+      <label for="body">{{form.body.label}}</label> 
+      <textarea id="body" class="form-control {%if form.body.errors %} is-invalid {% endif %} " id="exampleTextarea" rows="3" name="{{form.body.name}}">{%if form.body.value %}{{form.body.value}} {% endif %}</textarea>
       <div class="invalid-feedback">{{form.body.errors}}</div>
     </div>
     <div class="row">
     <!-- slug -->
     <div class="form-group col-sm-6 has-danger">
-      <label class="form-control-label" for="inputDanger1">{{form.slug.label}}</label>
-      <input type="text" value="wrong value" class="form-control {%if form.slug.errors %} is-invalid {% endif %} " name="{{form.slug.name}}" {%if form.slug.value %} value="{{form.slug.value}}" {% endif %} >
+      <label class="form-control-label" for="slug">{{form.slug.label}}</label>
+      <input type="text" id="slug" class="form-control {%if form.slug.errors %} is-invalid {% endif %} " name="{{form.slug.name}}" {%if form.slug.value %} value="{{form.slug.value}}" {% endif %} >
       <div class="invalid-feedback">{{form.slug.errors}}</div>
     </div>
 
@@ -37,7 +37,7 @@
     <div class="form-group col-sm-6">
       <label for="exampleInputFile">{{form.thumb.label}}</label>
       <input type="file" {%if form.thumb.value %} value="{{form.thumb.value}}" {% endif %}  class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="{{form.thumb.name}}">
-      <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+      <small id="fileHelp" class="form-text text-muted">Choose an image for your article.</small>
     </div>
     </div>
 

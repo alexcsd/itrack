@@ -106,8 +106,8 @@ def result(request):
     uses numpy to do matrix multiplication
     the metric used is the inner product
     '''
-    # if 'questions_meta' not in request.session:
-    #     return redirect('/')
+    if 'questions_meta' not in request.session:
+        return redirect('/')
     logger = logging.getLogger(__name__)
     eight_skills_vector=request.session['questions_meta']['skills_vector']
     logger.warning(eight_skills_vector)
@@ -116,19 +116,18 @@ def result(request):
     esv=eight_skills_vector
     #now its a list
     esv=[esv[i] for i in esv]
-    #note: that's the correct syntax when we want the result normally from the skills vector from the session: esv=[esv[i] for i in esv]
+    #note: that's the correct syntax when we want the result normally from the skills
+    #vector from the session: esv=[esv[i] for i in esv]
     #and this is the syntax when we randomize a vector for testing: esv=[esv[i] for i in range(8)]
     #or this is simpler :  esv=[i for i in esv]
     esv=array(esv)
     skills_matrix= skillsMatrix()
     eight_to_abet=[skills_matrix[i] for i in skills_matrix]
 
-
     mat_1_count=[i.count(1) for i in (array(eight_to_abet).T).tolist()]#
     eight_to_abet=array(eight_to_abet)
     esv=esv.reshape(1,8)
     abet_result=array(matmul(esv,eight_to_abet))/mat_1_count#
-
 
     abet_result=array(matmul(esv,eight_to_abet))
     # esv_norm = norm(esv)
@@ -153,10 +152,10 @@ def result(request):
     # matrix_norms = [norm(i) for i in subject_matrix.T]
     # norms_mul = srv_norm * array(matrix_norms)
     # srv=srv/norms_mul
-    top_three_courses = sorted(zip(srv, subject_names), reverse=True)
+    top_three_courses = sorted(zip(srv, subject_names), reverse=True)[:3]
     context.update({'courses':top_three_courses})
     #delete session
-    # del request.session['questions_meta'] #comment for test purposes
+    del request.session['questions_meta'] #comment for test purposes
     return render(request, 'questionnaire/result.html', context)
 
 def start_course(request, course):
