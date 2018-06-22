@@ -6,5 +6,7 @@
 ### Mohamed Shaaban
 ### Mostafa Mahmoud
 ### Amr Reda
+### Supervisor 
+#### Dr. Ahmed Younes
 
 pip install -r /path/to/requirements.txt
