@@ -1,12 +1,15 @@
-# itrack
+# iTrack
 ## Graduation project
+
 ## Contibuters
-### Aml Hanfy
-### Mohamed Ali
+
 ### Mohamed Shaaban
 ### Mostafa Mahmoud
 ### Amr Reda
-### Supervisor 
-#### Dr. Ahmed Younes
+### Aml Hanfy
+### Mohamed Ali
+
+#### Supervisor 
+##### Dr. Ahmed Younes
 
 pip install -r /path/to/requirements.txt
